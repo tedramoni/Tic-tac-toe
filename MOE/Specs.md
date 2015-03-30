@@ -21,8 +21,8 @@ En cas d’égalité au bout de 5 manches, des manches sont ajoutées en « mort
 **Affichage**
 
 Sont affichés en permanence:
--Les noms des joueurs, dès lors qu'ils sont saisis, et leurs scores respectifs
--La grille de jeu et le joueur dont c'est le tour, dès lors qu'une manche est en cours
+- Les noms des joueurs, dès lors qu'ils sont saisis, et leurs scores respectifs
+- La grille de jeu et le joueur dont c'est le tour, dès lors qu'une manche est en cours
 
 Exemple de grille de jeu affichée dans la console :
 
