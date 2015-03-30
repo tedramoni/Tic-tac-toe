@@ -1,15 +1,30 @@
 #Tic-Tac-Toe
 
-## Spécification Technique de Besoin 
+## Spécifications Fonctionnelles détaillées
 
-Exemple de morpion version normale :
+Exemple de tic-tac-toe version normale :
 
 ![Exemple de morpion version normale](http://i.imgur.com/Okm4aMM.png "Optional title")
 
+###Application
+
+Le jeu sera réalisé en application console.
+
+Pour la notion de tour par tour, nous proposons de réaliser un programme pour une seule machine, sur laquelle les deux joueurs joueront à tour de rôle.
+
+###Déroulement de la partie
+
+Après le choix des noms et symboles, les joueurs s'affrontent lors de manches successives (minimum 5).
+Chaque manche peut se solder par une égalité, ou une victoire de l'un des joueurs; le cas échéant ce joueur marque un point.
+En cas d’égalité au bout de 5 manches, des manches sont ajoutées en « mort subite », autrement dit le premier joueur qui marque un point gagne la partie.
+
 **Affichage**
 
-Dans un premier temps, la solution sera réalisée en application console, 
-Exemple de ce que l'application affichera dans un premier temps en console :
+Sont affichés en permanence:
+-Les noms des joueurs, dès lors qu'ils sont saisis, et leurs scores respectifs
+-La grille de jeu et le joueur dont c'est le tour, dès lors qu'une manche est en cours
+
+Exemple de grille de jeu affichée dans la console :
 
     |---|---|---| 
     |   | X | O |
@@ -19,40 +34,35 @@ Exemple de ce que l'application affichera dans un premier temps en console :
     | O |   | X |
     |---|---|---|
 
-Pour la notion de tour par tour, nous proposons la solution de réaliser une seule et unique application, sur laquelle les deux joueurs jouerons sur la même machine.
+**Choix du nom et du symbole**
 
-**Choix du symbole**
+Au début de la partie, le joueur 1 saisit son nom et choisit son symbole, « X » et « O », puis le joueur 2 saisit son nom et obtient le deuxième symbole.
 
-Nous choisirons les traditionelles symboles « X » et « O » pour la première solution technique, à moins que la MOA ne s'y oppose et propose ses propres symboles.
+**Déroulement d'une manche**
 
-Au début de la partie, le joueur 1 choisit son symbole, et le joueur 2 obtient le deuxième symbole. 
-En cas d’égalité au bout des 5 manches, des manches sont ajoutées en « mort subite ». La première manche gagnée permet de gagner la partie.
+Le joueur dont c'est le tour est invité à saisir le numéro de la case dans laquelle il souhaite placer son pion. En cas de saisie incorrecte (case déjà occupée), il devra recommencer sa saisie.
+Si la case choisie était inoccupée, le pion du joueur y est ajouté.
 
-** Stockage de la partie** : 
+- Dans le cas où ce pion viendrait former un alignement avec 2 autres pions du même joueur, ce dernier marque un point et la manche est terminée.
+- Si ce pion ne forme aucun alignement et que la grille de jeu est remplie, la manche s'achève sur une égalité.
+- Dans les autres cas, c'est au tour de l'autre joueur.
 
-L’état de la partie doit être stocké au fur et à mesure, ce qui permettra en cas d'arrêt volontaire (ou non) de l'application de reprendre la partie en cours.
-Nous proposons donc de stocké sur disque dur (fichier texte, binaire ou autre) à chaques tours joués.
+**Nouvelle partie**
 
-Ce qui implique donc la possibilité quand le jeu est redemaré de recharger la dernière partie si le fichier contient les valeurs d'une partie stoppée.
+Lors de la fin d'une partie, un message indique quel joueur est vainqueur, puis il est proposé de recommencer une partie.
+Nous proposons cependant à la MOA de donner aux joueurs la possibilité de recommencer une partie à n'importe quel moment du jeu, en entrant par exemple une commande en lieu et place de leur choix de placement de pion.
 
-Lors de la fin d'une partie, le fichier est vidé.
-
-
-**Recommencement de la partie** : 
-
-Il sera proposer via console de recommencer une partie après qu'une partie soit terminée. Nous proposons cependant à la MOA la possibilité pour les joueurs de recommencer une partie à n'importe quel moment de la partie, en entrant par exemple une commande (!retry) en lieu et place de leur symbole.
-
-
-Exemple de commande de base possible d'entrer à la place du symbole :
+Exemples de commandes :
 
 - /retry
-
-Recommencer une nouvelle partie (pas de sauvegarde)
+Recommencer une nouvelle partie (la partie est effacée, une nouvelle est relancée)
 
 - /quit
-
 Quitter la partie (la partie est sauvegardée)
 
+###Stockage de la partie
 
+L’état de la partie doit être stocké au fur et à mesure, ce qui permettra en cas d'arrêt volontaire (ou non) de l'application de reprendre la partie en cours.
+Nous proposons donc de stocker l'état de la partie dans un fichier local, mis à jour à chaque action. Ce fichier est réinitialisé une fois la partie gagnée.
 
-
+Au lancement de l'application, si le fichier contient les valeurs d'une partie stoppée, cette dernière est rechargée .
