@@ -33,9 +33,9 @@ Spécifications
 
  2. Le décodeur propose alors une première solution. (Exemple 18756)
 
- 3. Le codeur renvoi alors des indices à chacun des chiffres proposés par le décodeur. Ces indices peuvent indiquer qu'un chiffre est bien placé dans la chaine, qu'il existe dans la chaine mais n'est pas à la bonne place, ou alors qu'il n'existe pas dans celle-ci.
+ 3. Le codeur renvoi alors des indices. Ces indices peuvent indiquer le nombre de chiffres trouvés et bien placés et le nombre de chiffres trouvés mais mal placés, sans préciser desquels il s'agit.
 
- 4. Le jeu s'arrête quand le décodeur parviens à proposer la chaîne exacte et dans le bonne ordre du codeur, ou bien que celui-ci n'y arrive pas avant le nombre de tours impartis, par exemple dix tours.
+ 4. Le jeu s'arrête quand le décodeur parviens à proposer la chaîne exacte et dans le bonne ordre du codeur, ou bien que celui-ci n'y arrive pas avant le nombre de tours impartis qui est de **10 tours**.
 
 ----------
 L'application demandée devra ainsi couvrir le besoin de bon déroulement du jeu, en respectant à la fois les règles énoncées ci-dessus, mais également les possibilités d'évolutions de celles-ci; certains détails n'étant pas encore fixés (nombre de tours, de joueurs, chiffres ou couleurs, ...)
