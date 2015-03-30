@@ -10,6 +10,7 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
+            int test = 1;
         }
     }
 }
