@@ -8,7 +8,7 @@ namespace TicTacToe
 {
     class BoardState
     {
-        public string[] board;
+        private string[] board;
         public void generateBoard(int size = 3){
             this.board = new string[size*size];
             int cellNumber = 0;
@@ -27,6 +27,13 @@ namespace TicTacToe
         {
             this.board[index-1] = value;
         }
+
+        public string[] getBoard()
+        {
+            return this.board;
+        }
+
+
 
     }
 }
