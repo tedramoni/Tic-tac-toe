@@ -8,16 +8,19 @@ namespace TicTacToe
 {
     class BoardState
     {
-        private string[] board;
-        public void generateBoard(int size = 3){
-            this.board = new string[size*size];
+        private string[,] board;
+
+        public void generateBoard(int size = 3)
+        {
+            this.board = new string[size, size];
             int cellNumber = 0;
-            for (int line = 1; line <= size; line++)
+            for (int line = 0; line < size; line++)
             {
-                for (int row = 1; row <= size; row++)
+                for (int row = 0; row < size; row++)
                 {
+
                     cellNumber = cellNumber + 1;
-                    this.board[cellNumber-1] = cellNumber.ToString();
+                    this.board[line, row] = cellNumber.ToString();
 
                 }
             }
@@ -25,15 +28,22 @@ namespace TicTacToe
 
         public void updateBoard(int index, string value)
         {
-            this.board[index-1] = value;
+            var length = this.getBoard().GetLength(0);
+            if (index % length == 0)
+            {
+                this.getBoard()[index / length - 1, length - 1] = value;
+            }
+            else
+            {
+                this.getBoard()[(int)Math.Truncate((double)(index / length)), index % length - 1] = value;
+
+            }
         }
 
-        public string[] getBoard()
+        public string[,] getBoard()
         {
             return this.board;
         }
-
-
 
     }
 }

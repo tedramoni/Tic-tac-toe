@@ -18,7 +18,6 @@ namespace TicTacToe
             WinChecker checker = new WinChecker();
 
             board.generateBoard(3);
-            Console.WriteLine(displayer.display(board));
             bool stop = false;
             string[] user = new string[] { "X", "O" };
             string currentUser;
@@ -28,21 +27,32 @@ namespace TicTacToe
             {
                 turn++;
                 currentUser = user[turn % 2];
+                Console.WriteLine(displayer.display(board));
                 Console.WriteLine("Joueur " + currentUser + " entrez un numéro de case");
                 index = Console.ReadLine();
 
                 if (index != "")
                 {
                     board.updateBoard(Convert.ToInt32(index), currentUser);
-                    checker.haveWinner(board);
+                    Console.Clear();
+
+                    if (checker.haveWinner(board))
+                    {
+                        stop = true;
+                        string winner = checker.getWinner();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("The winner is: " + winner);
+                        Console.WriteLine(displayer.display(board));
+
+                    }
+          
                 }
                 else
                 {
                     stop = true;
                 }
-                Console.WriteLine(displayer.display(board));
-
             }
+
             Console.ReadLine();
 
         }

@@ -13,13 +13,12 @@ namespace TicTacToe
         {
             String board = "";
             var length = paramBoard.getBoard().GetLength(0);
-            var row = Math.Sqrt(length);
             var current = 0;
-            for (int i = 0; i < row; i++)
+            for (int row = 0; row < length; row++)
             {
-                for (int j = 0; j < row; j++)
+                for (int line = 0; line < length; line++)
                 {
-                    board += " " +paramBoard.getBoard()[current];
+                    board += " " + paramBoard.getBoard()[row, line];
                     current++;
                 }
                 board += "\n";
