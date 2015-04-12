@@ -62,6 +62,13 @@
     <Compile Include="Implementations\TicTacToeRunner.cs" />
     <Compile Include="Interfaces\ITicTacToeRound.cs" />
     <Compile Include="Implementations\TicTacToeRound.cs" />
+    <Compile Include="Interfaces\IBoardFactory.cs" />
+    <Compile Include="Interfaces\IPlayerFactory.cs" />
+    <Compile Include="Interfaces\IRoundFactory.cs" />
+    <Compile Include="Implementations\BoardFactory.cs" />
+    <Compile Include="Implementations\PlayerFactory.cs" />
+    <Compile Include="Implementations\RoundFactory.cs" />
+    <Compile Include="Interfaces\ITicTacToeRoundFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

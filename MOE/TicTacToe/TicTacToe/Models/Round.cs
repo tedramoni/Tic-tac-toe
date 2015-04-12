@@ -7,9 +7,9 @@ namespace TicTacToe
 		private Board _board;
 		public Board Board { get { return _board; } }
 
-		public Round ()
+		public Round (Board board)
 		{
-			_board = new Board ();
+			_board = board;
 		}
 	}
 }

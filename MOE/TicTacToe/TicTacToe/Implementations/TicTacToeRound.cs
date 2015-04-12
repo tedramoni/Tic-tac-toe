@@ -13,9 +13,9 @@ namespace TicTacToe
 
 		public Round Round { get { return _round; } }
 
-		public TicTacToeRound (IReader reader, IDisplayer displayer, ITicTacToeGame game, IBoardFormatter formatter)
+		public TicTacToeRound (IReader reader, IDisplayer displayer, ITicTacToeGame game, IBoardFormatter formatter, IRoundFactory round_factory)
 		{
-			_round = new Round ();
+			_round = round_factory.Create();
 			_reader = reader;
 			_displayer = displayer;
 			_game = game;
