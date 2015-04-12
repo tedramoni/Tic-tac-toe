@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -41,11 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardDisplay.cs" />
-    <Compile Include="BoardState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinChecker.cs" />
+    <Compile Include="Models\Board.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Round.cs" />
+    <Compile Include="Interfaces\IBoardWinChecker.cs" />
+    <Compile Include="Interfaces\IBoardFormatter.cs" />
+    <Compile Include="Implementations\BoardWinChecker.cs" />
+    <Compile Include="Implementations\BoardFormatter.cs" />
+    <Compile Include="Interfaces\IDisplayer.cs" />
+    <Compile Include="Implementations\Displayer.cs" />
+    <Compile Include="Interfaces\IReader.cs" />
+    <Compile Include="Implementations\Reader.cs" />
+    <Compile Include="Interfaces\ITicTacToeGame.cs" />
+    <Compile Include="Interfaces\ITicTacToeRunner.cs" />
+    <Compile Include="Implementations\TicTacToeGame.cs" />
+    <Compile Include="Implementations\TicTacToeRunner.cs" />
+    <Compile Include="Interfaces\ITicTacToeRound.cs" />
+    <Compile Include="Implementations\TicTacToeRound.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -58,4 +74,9 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Implementations\" />
+  </ItemGroup>
 </Project>

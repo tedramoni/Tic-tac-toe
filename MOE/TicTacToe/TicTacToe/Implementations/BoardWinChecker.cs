@@ -1,22 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    class WinChecker
+	public class BoardWinChecker : IBoardWinChecker
     {
-        String winner = null;
-        public Boolean haveWinner(BoardState paramBoard)
-        {
-            var board = paramBoard.getBoard();
-            var length = board.GetLength(0);
+		private Board _board;
+		private Player _winner = null;
 
-            var isLineWinner = this.checkLines(board, length);
-            var isRowWinner = this.checkRows(board, length);
-            var isDiagonalWinner = this.checkDiagonal(board, length);
+		public Player Winner { get { return _winner; } }
+
+		public BoardWinChecker(Board board){
+			_board = board;
+		}
+
+        public Boolean HaveWinner()
+        {
+			var length = _board.BoardState.GetLength(0);
+
+			var isLineWinner = this.checkLines();
+			var isRowWinner = this.checkRows();
+			var isDiagonalWinner = this.checkDiagonal();
 
             if (isLineWinner || isRowWinner || isDiagonalWinner)
             {
@@ -26,17 +29,27 @@ namespace TicTacToe
             return false;
         }
 
+		public Boolean IsTied(){
+			var length = _board.BoardState.GetLength(0);
+			for (int line = 0; line < length; line++)
+			{
+				for (int row = 0; row < length; row++)
+				{
+					if (_board.BoardState[line, row] == null)
+						return false;
+				}
+			}
 
 
-        public string getWinner()
+			return true;
+		}
+			
+		protected bool checkLines()
         {
-            return this.winner;
-        }
+			var length = _board.BoardState.GetLength(0);
+			var board = _board.BoardState;
 
-
-        protected bool checkLines(string[,] board, int length)
-        {
-            string prevValue;
+            Player prevValue;
             var winner = false;
 
             for (int line = 0; line < length; line++)
@@ -46,7 +59,7 @@ namespace TicTacToe
                 for (int row = 0; row < length; row++)
                 {
 
-                    if (board[line, row] == prevValue)
+					if (board[line, row] == prevValue && prevValue != null)
                     {
                         winner = true;
                     }
@@ -58,15 +71,19 @@ namespace TicTacToe
                 }
                 if (winner == true)
                 {
-                    this.winner = prevValue;
+					_winner = prevValue;
                     return true;
                 }
 
             }
             return false;
         }
-        protected bool checkRows(string[,] board, int length)
+
+        protected bool checkRows()
         {
+			var length = _board.BoardState.GetLength(0);
+			var board = _board.BoardState;
+
             for (int row = 0; row < length; row++)
             {
 
@@ -75,7 +92,7 @@ namespace TicTacToe
 
                 for (int line = 0; line < length; line++)
                 {
-                    if (board[line, row] == prevValue)
+					if (board[line, row] == prevValue && prevValue != null)
                     {
                         winner = true;
                     }
@@ -87,20 +104,23 @@ namespace TicTacToe
                 }
                 if (winner == true)
                 {
-                    this.winner = prevValue;
+					_winner = prevValue;
                     return true;
                 }
 
             }
             return false;
         }
-        protected bool checkDiagonal(string[,] board, int length)
+        protected bool checkDiagonal()
         {
-            return (this.checkFirstDiagonal(board, length) || this.checkSecondDiagonal(board, length));
+            return (this.checkFirstDiagonal() || this.checkSecondDiagonal());
         }
 
-        protected bool checkFirstDiagonal(string[,] board, int length)
+        protected bool checkFirstDiagonal()
         {
+			var length = _board.BoardState.GetLength(0);
+			var board = _board.BoardState;
+
             var winner = false;
             var row = 0;
             var line = 0;
@@ -110,7 +130,7 @@ namespace TicTacToe
             {
                 row++;
                 line++;
-                if (board[row, line] == prevValue)
+				if (board[row, line] == prevValue && prevValue != null)
                 {
                     winner = true;
                 }
@@ -123,14 +143,17 @@ namespace TicTacToe
 
             if (winner == true)
             {
-                this.winner = prevValue;
+				_winner = prevValue;
             }
 
             return winner;
         }
 
-        protected bool checkSecondDiagonal(string[,] board, int length)
+        protected bool checkSecondDiagonal()
         {
+			var length = _board.BoardState.GetLength(0);
+			var board = _board.BoardState;
+
             var winner = false;
             var row = length - 1;
             var line = 0;
@@ -141,7 +164,7 @@ namespace TicTacToe
                 row--;
                 line++;
 
-                if (board[row, line] == prevValue)
+				if (board[row, line] == prevValue && prevValue != null)
                 {
                     winner = true;
                 }
@@ -153,7 +176,7 @@ namespace TicTacToe
             }
             if (winner == true)
             {
-                this.winner = prevValue;
+				_winner = prevValue;
             }
 
             return winner;
