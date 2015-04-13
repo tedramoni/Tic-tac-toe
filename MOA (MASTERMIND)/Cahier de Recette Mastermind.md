@@ -7,7 +7,7 @@ Cahier de Recette
 
 
 | Numéro | Description  | Résultat obtenu |
-| :----: | :----------------- | ---:  |
+| :----: | :----------------- | :----:  |
 |1| L'application invite le codeur à saisir son code secret.||
 |2| La solution du codeur contient 5 caractères exactement.||
 |3| L'application n'accepte que des chiffres, pour les choix du codeur comme du décodeur.||
@@ -20,7 +20,5 @@ Cahier de Recette
 |10| Le décodeur gagne la partie s'il a trouvé le bon code, ou si le décodeur s'est trompé à n'importe quel moment dans les indices.||
 |11| Une fois la partie terminée, le vainqueur est affiché.||
 |12| Une fois la partie terminée, l'application propose de rejouer ou de quitter.||
-||||
-
 
 ### Résultat de la Recette & Remarques
