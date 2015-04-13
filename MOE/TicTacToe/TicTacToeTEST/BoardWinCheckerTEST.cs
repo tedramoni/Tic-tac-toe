@@ -13,7 +13,6 @@ namespace TicTacToeTEST
             string errMsg;
             int boardSize = 3;
             Player player1;
-            //Player player2 = new Player("Bill", "X");
             Board boardTEST;
             BoardWinChecker boardWinCheckerTEST; 
 
@@ -46,6 +45,7 @@ namespace TicTacToeTEST
             }
 
             //on teste la non victoire sur chaque ligne
+            //(on ne remplie pas la dernière cellule de la ligne)
             for (int j = 0; j < boardSize - 1; j++)
             {
                 player1 = new Player("Bob", "O");
@@ -60,6 +60,7 @@ namespace TicTacToeTEST
             }
 
             //on teste la non victoire sur chaque colonne
+            //(on ne remplie pas la dernière cellule de la colonne)
             for (int j = 1; j <= boardSize - 1; j++)
             {
                 player1 = new Player("Bob", "O");
@@ -72,6 +73,41 @@ namespace TicTacToeTEST
                 errMsg = "Erreur : victoire detecté pour la colonne " + j;
                 Assert.IsFalse(boardWinCheckerTEST.HaveWinner(), errMsg);
             }
+        }//haveWinnerTest()
+
+        [TestMethod]
+        public void IsTiedTest()
+        {
+            string errMsg;
+            int boardSize = 3;
+            Player player1;
+            Player player2;
+            Board boardTEST;
+            BoardWinChecker boardWinCheckerTEST;
+
+            player1 = new Player("Bob", "O");
+            player2 = new Player("Bill", "X");
+            boardTEST = new Board(boardSize);
+            boardWinCheckerTEST = new BoardWinChecker(boardTEST);
+            boardTEST.playTurn(1, player1);
+            boardTEST.playTurn(2, player2);
+            boardTEST.playTurn(3, player1);
+            boardTEST.playTurn(5, player2);
+            boardTEST.playTurn(4, player1);
+            boardTEST.playTurn(7, player2);
+            boardTEST.playTurn(6, player1);
+            boardTEST.playTurn(9, player2);
+
+            //Grille non remplie : IsTied() doit renvoyer false
+            errMsg = "Erreur : égalité détectée";
+            Assert.IsFalse(boardWinCheckerTEST.IsTied(), errMsg);
+
+            boardTEST.playTurn(8, player1);
+
+            //Grille remplie : IsTied() doit renvoyer true
+            errMsg = "Erreur : égalité non détectée";
+            Assert.IsTrue(boardWinCheckerTEST.IsTied(),errMsg);
+
         }
     }
 }
