@@ -16,8 +16,6 @@ namespace TicTacToe
 
 		public Boolean HaveWinner ()
 		{
-			var length = _board.BoardState.GetLength (0);
-
 			var isLineWinner = this.checkLines ();
 			var isRowWinner = this.checkRows ();
 			var isDiagonalWinner = this.checkDiagonal ();
