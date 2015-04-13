@@ -5,46 +5,46 @@ namespace TicTacToe
 	public class TicTacToeRound : ITicTacToeRound
 	{
 		private Round _round;
+		private Game _game;
+
 		private IDisplayer _displayer;
 		private IReader _reader;
-		private ITicTacToeGame _game;
 		private IBoardWinChecker _checker;
 		private IBoardFormatter _formatter;
 
-		public Round Round { get { return _round; } }
-
-		public TicTacToeRound (IReader reader, IDisplayer displayer, ITicTacToeGame game, IBoardFormatter formatter, IRoundFactory round_factory)
+		public TicTacToeRound (IReader reader, IDisplayer displayer, IBoardFormatter formatter, Game game)
 		{
-			_round = round_factory.Create();
 			_reader = reader;
 			_displayer = displayer;
 			_game = game;
+			_round = _game.Current;
 			_checker = new BoardWinChecker(_round.Board);
 			_formatter = formatter;
 		}
 
 		public void Start ()
 		{
-			Player currentUser = _game.Player2;
+			_round.Current = _game.Player1;
 
-			do {
-				_displayer.Show (_game.GetMenu (this), ConsoleColor.Blue);
+			do{
+				_displayer.Clear();
+				_displayer.Show(GetMenu(), ConsoleColor.Blue);
 
-				currentUser = (currentUser == _game.Player1) ? _game.Player2 : _game.Player1;
+				_displayer.Show(_formatter.Format(_round.Board));
 
-				_displayer.Show (_formatter.Format (_round.Board));
 				string index;
 				bool validMove;
 				do {
-					_displayer.Show ("Joueur " + currentUser.Name + " a vous de choisir une case :");
-					 index = _reader.Read ();
-					 validMove = _round.Board.playTurn (Convert.ToInt32 (index), currentUser);
+					_displayer.Show ("Joueur " + _round.Current.Name + " a vous de choisir une case :");
+					index = _reader.Read ();
+					validMove = _round.Board.playTurn (Convert.ToInt32 (index), _round.Current);
 					if(validMove == false){
 						_displayer.Show ("Case " + index + " déjà utilisée");
 
 					}
 				} while(validMove != true);
-				_displayer.Clear ();
+
+				_round.Current = (_round.Current == _game.Player1)?_game.Player2:_game.Player1;
 
 			} while(!_checker.HaveWinner () && !_checker.IsTied ());
 
@@ -54,7 +54,22 @@ namespace TicTacToe
 				_checker.Winner.NumberWin++;
 				_displayer.Show ("Le gagnant du round est : " + _checker.Winner.Name, ConsoleColor.Green);
 			}
-			_displayer.Show (_formatter.Format (_round.Board));
+
+			_displayer.Show(_formatter.Format(_round.Board));
+			_displayer.Show("Appuyer sur une touche pour continuer...");
+			_reader.Read ();
+		}
+
+		private string GetMenu ()
+		{
+			var s = "======================================================================\n " +
+				"Round " + (Array.IndexOf(_game.Rounds, _game.Current)+1) + " / " + _game.Rounds.Length;
+			s +=  "\n======================================================================\n";
+			s += "Menu : NONE\t\t\t\n";
+			s += "Scores : " + _game.Player1.Name + " : " + _game.Player1.NumberWin + "\n";
+			s += "\t "+_game.Player2.Name+" : " + _game.Player2.NumberWin + "\n";
+			s += "======================================================================\n";
+			return s;
 		}
 	}
 }

@@ -8,14 +8,12 @@ namespace TicTacToe
 		private IReader _reader;
 		private IDisplayer _displayer;
 
-		public ITicTacToeGame Game { get { return _game; } }
-
-		public TicTacToeRunner (IReader reader, IDisplayer displayer, IBoardFormatter formatter, IPlayerFactory player_factory, IRoundFactory round_factory)
+		public TicTacToeRunner (IReader reader, IDisplayer displayer, IBoardFormatter formatter, IPlayerFactory player_factory, IRoundFactory round_factory, IGameFactory game_factory)
 		{
 			_reader = reader;
 			_displayer = displayer;
 
-			_game = new TicTacToeGame (_reader, _displayer, formatter, player_factory, round_factory);
+			_game = new TicTacToeGame (_reader, _displayer, formatter, player_factory, round_factory, game_factory);
 		}
 
 		public void Run ()
