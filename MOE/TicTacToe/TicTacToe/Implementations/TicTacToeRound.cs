@@ -27,27 +27,34 @@ namespace TicTacToe
 		{
 			Player currentUser = _game.Player2;
 
-			do{
-				_displayer.Show(_game.GetMenu(this), ConsoleColor.Blue);
+			do {
+				_displayer.Show (_game.GetMenu (this), ConsoleColor.Blue);
 
-				currentUser = (currentUser == _game.Player1)?_game.Player2:_game.Player1;
+				currentUser = (currentUser == _game.Player1) ? _game.Player2 : _game.Player1;
 
-				_displayer.Show(_formatter.Format(_round.Board));
-				_displayer.Show("Joueur " + currentUser.Name + " a vous de choisir une case :");
-				var index = _reader.Read();
+				_displayer.Show (_formatter.Format (_round.Board));
+				string index;
+				bool validMove;
+				do {
+					_displayer.Show ("Joueur " + currentUser.Name + " a vous de choisir une case :");
+					 index = _reader.Read ();
+					 validMove = _round.Board.playTurn (Convert.ToInt32 (index), currentUser);
+					if(validMove == false){
+						_displayer.Show ("Case " + index + " déjà utilisée");
 
-				_round.Board.playTurn(Convert.ToInt32(index), currentUser);
-				_displayer.Clear();
+					}
+				} while(validMove != true);
+				_displayer.Clear ();
 
-			}while(!_checker.HaveWinner() && !_checker.IsTied());
+			} while(!_checker.HaveWinner () && !_checker.IsTied ());
 
 			if (_checker.IsTied ()) {
-				_displayer.Show("Match nul !", ConsoleColor.Yellow);
+				_displayer.Show ("Match nul !", ConsoleColor.Yellow);
 			} else {
 				_checker.Winner.NumberWin++;
-				_displayer.Show("Le gagnant du round est : " + _checker.Winner.Name, ConsoleColor.Green);
+				_displayer.Show ("Le gagnant du round est : " + _checker.Winner.Name, ConsoleColor.Green);
 			}
-			_displayer.Show(_formatter.Format(_round.Board));
+			_displayer.Show (_formatter.Format (_round.Board));
 		}
 	}
 }
