@@ -71,7 +71,7 @@ namespace TicTacToe
 
 			do {
 				_displayer.Show ("Symbole du joueur 1 : ");
-				symbol = _reader.Read ();
+				symbol = _reader.Read ().ToUpper();
 			} while(Array.IndexOf (choices, symbol) == -1);
 
 			_game.Player1 = _player_factory.Create (name, symbol);
@@ -79,11 +79,15 @@ namespace TicTacToe
 			_displayer.Show ("Prénom du joueur 2 : ");
 			name = _reader.Read ();
 
-			do {
-				_displayer.Show ("Symbole du joueur 2 : ");
-				symbol = _reader.Read ();
-			} while(Array.IndexOf (choices, symbol) == -1);
+			if (_game.Player1.Symbol == choices [0]) {
+				symbol = choices [1];
+			} else {
+				symbol = choices [0];
+			}
+			_displayer.Show (name + " votre symbol est: "+ symbol);
 
+			_displayer.Show ("\nAppuyez sur une touche pour continuer", ConsoleColor.Yellow);
+			_reader.Read ();
 			_game.Player2 = _player_factory.Create (name, symbol);
 		}
 	}
