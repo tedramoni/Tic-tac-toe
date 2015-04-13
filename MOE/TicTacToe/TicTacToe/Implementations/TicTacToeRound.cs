@@ -28,6 +28,8 @@ namespace TicTacToe
 			Player currentUser = _game.Player2;
 
 			do{
+				_displayer.Show(_game.GetMenu(this), ConsoleColor.Blue);
+
 				currentUser = (currentUser == _game.Player1)?_game.Player2:_game.Player1;
 
 				_displayer.Show(_formatter.Format(_round.Board));
@@ -42,6 +44,7 @@ namespace TicTacToe
 			if (_checker.IsTied ()) {
 				_displayer.Show("Match nul !", ConsoleColor.Yellow);
 			} else {
+				_checker.Winner.NumberWin++;
 				_displayer.Show("Le gagnant du round est : " + _checker.Winner.Name, ConsoleColor.Green);
 			}
 			_displayer.Show(_formatter.Format(_round.Board));

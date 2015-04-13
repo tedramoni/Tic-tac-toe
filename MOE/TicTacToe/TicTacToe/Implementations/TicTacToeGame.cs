@@ -19,7 +19,7 @@ namespace TicTacToe
 		public Player Player1 { get { return _player1; } }
 		public Player Player2 { get { return _player2; } }
 
-		public TicTacToeGame (IReader reader, IDisplayer displayer, IBoardFormatter formatter, IPlayerFactory player_factory, IRoundFactory round_factory, int numberRound = 1)
+		public TicTacToeGame (IReader reader, IDisplayer displayer, IBoardFormatter formatter, IPlayerFactory player_factory, IRoundFactory round_factory, int numberRound = 5)
 		{
 			_rounds = new ITicTacToeRound[numberRound];
 			_reader = reader;
@@ -59,10 +59,32 @@ namespace TicTacToe
 
 			//Lancement de la partie
 			for (int i = 0; i < _rounds.Length; i++) {
+				_displayer.Clear ();
+
 				//For testing purpose
 				_rounds [i] = new TicTacToeRound(_reader, _displayer, this, _formatter, _round_factory);
 				_rounds [i].Start ();
 			}
+
+			_displayer.Show ("Fin de partie : ", ConsoleColor.Cyan, false);
+			if (_player1.NumberWin > _player2.NumberWin)
+				_displayer.Show ("Le joueur " + _player1.Name + " a gagné la partie.");
+			else if(_player2.NumberWin > _player1.NumberWin)
+				_displayer.Show ("Le joueur " + _player2.Name + " a gagné la partie.");
+			else
+				_displayer.Show ("Match nul !");
+		}
+
+		public string GetMenu (ITicTacToeRound round)
+		{
+			var s = "======================================================================\n " +
+				"Round " + (Array.IndexOf(_rounds, round)+1) + " / " + _rounds.Length;
+			s +=  "\n======================================================================\n";
+			s += "Menu : NONE\t\t\t\n";
+			s += "Scores : " + _player1.Name + " : " + _player1.NumberWin + "\n";
+			s += "\t "+_player2.Name+" : " + _player2.NumberWin + "\n";
+			s += "======================================================================\n";
+			return s;
 		}
 	}
 }
