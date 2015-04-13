@@ -7,7 +7,7 @@ namespace TicTacToe
 	{
 		public string Format (Board board)
 		{
-			String format = "";
+			String format = "+++++++++++++\n";
 			var length = board.BoardState.GetLength(0);
 
 			for (int row = 0; row < length; row++)
@@ -17,11 +17,11 @@ namespace TicTacToe
 					Player p = board.BoardState[row, line];
 
 					if(p != null)
-						format += " " + p.Symbol;
+						format += "+ " + p.Symbol + " " ;
 					else
-						format += " " + ((row * length) + line + 1);
+						format += "+ " + ((row * length) + line + 1) + " ";
 				}
-				format += "\n";
+				format += "+\n+++++++++++++\n";
 			}
 
 			return format;
