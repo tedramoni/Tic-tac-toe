@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public interface IBoardFormatter
 	{
-		string Format(Board board);
+		string Format (Board board);
 	}
 }
-

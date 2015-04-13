@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public interface IBoardFactory
 	{
-		Board Create();
+		Board Create ();
 	}
 }
-

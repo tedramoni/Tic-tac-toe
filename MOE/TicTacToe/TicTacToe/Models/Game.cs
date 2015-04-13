@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public class Game
 	{
@@ -9,13 +7,16 @@ namespace TicTacToe
 		private Round _current;
 
 		public Player Player1 { get { return _player1; } set { _player1 = value; } }
-		public Player Player2 { get { return _player2; } set { _player2 = value; } }
-		public Round[] Rounds { get { return _rounds; } }
-		public Round Current { get { return _current; } set{ _current = value; } }
 
-		public Game(int numberRound) {
+		public Player Player2 { get { return _player2; } set { _player2 = value; } }
+
+		public Round[] Rounds { get { return _rounds; } }
+
+		public Round Current { get { return _current; } set { _current = value; } }
+
+		public Game (int numberRound)
+		{
 			_rounds = new Round[numberRound];
 		}
 	}
 }
-

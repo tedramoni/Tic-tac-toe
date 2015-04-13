@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public class RoundFactory : IRoundFactory
 	{
@@ -11,14 +9,9 @@ namespace TicTacToe
 			_board_factory = board_factory;
 		}
 
-		#region IRoundFactory implementation
-
 		public Round Create ()
 		{
-			return new Round (_board_factory.Create());
+			return new Round (_board_factory.Create ());
 		}
-
-		#endregion
 	}
 }
-

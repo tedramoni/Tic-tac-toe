@@ -4,11 +4,10 @@ namespace TicTacToe
 {
 	public interface IDisplayer
 	{
-		void Show(string s,
-			ConsoleColor color = ConsoleColor.White,
-			bool mustAddCarriageReturn = true);
+		void Show (string s,
+		          ConsoleColor color = ConsoleColor.White,
+		          bool mustAddCarriageReturn = true);
 
-		void Clear();
+		void Clear ();
 	}
 }
-

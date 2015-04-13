@@ -18,7 +18,7 @@ namespace TicTacToe
 			_displayer = displayer;
 			_game = game;
 			_round = _game.Current;
-			_checker = new BoardWinChecker(_round.Board);
+			_checker = new BoardWinChecker (_round.Board);
 			_formatter = formatter;
 		}
 
@@ -26,11 +26,11 @@ namespace TicTacToe
 		{
 			_round.Current = _game.Player1;
 
-			do{
-				_displayer.Clear();
-				_displayer.Show(GetMenu(), ConsoleColor.Blue);
+			do {
+				_displayer.Clear ();
+				_displayer.Show (GetMenu (), ConsoleColor.Blue);
 
-				_displayer.Show(_formatter.Format(_round.Board));
+				_displayer.Show (_formatter.Format (_round.Board));
 
 				string index;
 				bool validMove;
@@ -38,13 +38,13 @@ namespace TicTacToe
 					_displayer.Show ("Joueur " + _round.Current.Name + " a vous de choisir une case :");
 					index = _reader.Read ();
 					validMove = _round.Board.playTurn (Convert.ToInt32 (index), _round.Current);
-					if(validMove == false){
+					if (validMove == false) {
 						_displayer.Show ("Case " + index + " déjà utilisée");
 
 					}
 				} while(validMove != true);
 
-				_round.Current = (_round.Current == _game.Player1)?_game.Player2:_game.Player1;
+				_round.Current = (_round.Current == _game.Player1) ? _game.Player2 : _game.Player1;
 
 			} while(!_checker.HaveWinner () && !_checker.IsTied ());
 
@@ -55,22 +55,21 @@ namespace TicTacToe
 				_displayer.Show ("Le gagnant du round est : " + _checker.Winner.Name, ConsoleColor.Green);
 			}
 
-			_displayer.Show(_formatter.Format(_round.Board));
-			_displayer.Show("Appuyer sur une touche pour continuer...");
+			_displayer.Show (_formatter.Format (_round.Board));
+			_displayer.Show ("Appuyer sur une touche pour continuer...");
 			_reader.Read ();
 		}
 
 		private string GetMenu ()
 		{
 			var s = "======================================================================\n " +
-				"Round " + (Array.IndexOf(_game.Rounds, _game.Current)+1) + " / " + _game.Rounds.Length;
-			s +=  "\n======================================================================\n";
+			        "Round " + (Array.IndexOf (_game.Rounds, _game.Current) + 1) + " / " + _game.Rounds.Length;
+			s += "\n======================================================================\n";
 			s += "Menu : NONE\t\t\t\n";
 			s += "Scores : " + _game.Player1.Name + " : " + _game.Player1.NumberWin + "\n";
-			s += "\t "+_game.Player2.Name+" : " + _game.Player2.NumberWin + "\n";
+			s += "\t " + _game.Player2.Name + " : " + _game.Player2.NumberWin + "\n";
 			s += "======================================================================\n";
 			return s;
 		}
 	}
 }
-

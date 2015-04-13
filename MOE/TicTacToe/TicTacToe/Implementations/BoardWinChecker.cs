@@ -2,185 +2,161 @@
 
 namespace TicTacToe
 {
-    public class BoardWinChecker : IBoardWinChecker
-    {
-        private Board _board;
-        private Player _winner = null;
+	public class BoardWinChecker : IBoardWinChecker
+	{
+		private Board _board;
+		private Player _winner = null;
 
-        public Player Winner { get { return _winner; } }
+		public Player Winner { get { return _winner; } }
 
-        public BoardWinChecker(Board board)
-        {
-            _board = board;
-        }
+		public BoardWinChecker (Board board)
+		{
+			_board = board;
+		}
 
-        public Boolean HaveWinner()
-        {
-            var length = _board.BoardState.GetLength(0);
+		public Boolean HaveWinner ()
+		{
+			var length = _board.BoardState.GetLength (0);
 
-            var isLineWinner = this.checkLines();
-            var isRowWinner = this.checkRows();
-            var isDiagonalWinner = this.checkDiagonal();
+			var isLineWinner = this.checkLines ();
+			var isRowWinner = this.checkRows ();
+			var isDiagonalWinner = this.checkDiagonal ();
 
-            if (isLineWinner || isRowWinner || isDiagonalWinner)
-            {
-                return true;
-            }
+			if (isLineWinner || isRowWinner || isDiagonalWinner) {
+				return true;
+			}
 
-            return false;
-        }
+			return false;
+		}
 
-        public Boolean IsTied()
-        {
-            var length = _board.BoardState.GetLength(0);
-            for (int line = 0; line < length; line++)
-            {
-                for (int row = 0; row < length; row++)
-                {
-                    if (_board.BoardState[row, line] == null)
-                        return false;
-                }
-            }
+		public Boolean IsTied ()
+		{
+			var length = _board.BoardState.GetLength (0);
+			for (int line = 0; line < length; line++) {
+				for (int row = 0; row < length; row++) {
+					if (_board.BoardState [row, line] == null)
+						return false;
+				}
+			}
 
 
-            return true;
-        }
+			return true;
+		}
 
-        protected bool checkLines()
-        {
-            var length = _board.BoardState.GetLength(0);
-            var board = _board.BoardState;
+		protected bool checkLines ()
+		{
+			var length = _board.BoardState.GetLength (0);
+			var board = _board.BoardState;
 
-            Player prevValue;
-            var winner = false;
+			Player prevValue;
+			var winner = false;
 
-            for (int line = 0; line < length; line++)
-            {
-                prevValue = board[0, line];
-                for (int row = 0; row < length; row++)
-                {
+			for (int line = 0; line < length; line++) {
+				prevValue = board [0, line];
+				for (int row = 0; row < length; row++) {
 
-                    if (board[row, line] == prevValue && prevValue != null)
-                    {
-                        winner = true;
-                    }
-                    else
-                    {
-                        winner = false;
-                        break;
-                    }
-                }
-                if (winner == true)
-                {
-                    _winner = prevValue;
-                    return true;
-                }
+					if (board [row, line] == prevValue && prevValue != null) {
+						winner = true;
+					} else {
+						winner = false;
+						break;
+					}
+				}
+				if (winner == true) {
+					_winner = prevValue;
+					return true;
+				}
 
-            }
-            return false;
-        }
+			}
+			return false;
+		}
 
-        protected bool checkRows()
-        {
-            var length = _board.BoardState.GetLength(0);
-            var board = _board.BoardState;
+		protected bool checkRows ()
+		{
+			var length = _board.BoardState.GetLength (0);
+			var board = _board.BoardState;
 
-            for (int row = 0; row < length; row++)
-            {
+			for (int row = 0; row < length; row++) {
 
-                var winner = false;
-                var prevValue = board[row, 0];
+				var winner = false;
+				var prevValue = board [row, 0];
 
-                for (int line = 0; line < length; line++)
-                {
-                    if (board[row, line] == prevValue && prevValue != null)
-                    {
-                        winner = true;
-                    }
-                    else
-                    {
-                        winner = false;
-                        break;
-                    }
-                }
-                if (winner == true)
-                {
-                    _winner = prevValue;
-                    return true;
-                }
+				for (int line = 0; line < length; line++) {
+					if (board [row, line] == prevValue && prevValue != null) {
+						winner = true;
+					} else {
+						winner = false;
+						break;
+					}
+				}
+				if (winner == true) {
+					_winner = prevValue;
+					return true;
+				}
 
-            }
-            return false;
-        }
-        protected bool checkDiagonal()
-        {
-            return (this.checkFirstDiagonal() || this.checkSecondDiagonal());
-        }
+			}
+			return false;
+		}
 
-        protected bool checkFirstDiagonal()
-        {
-            var length = _board.BoardState.GetLength(0);
-            var board = _board.BoardState;
+		protected bool checkDiagonal ()
+		{
+			return (this.checkFirstDiagonal () || this.checkSecondDiagonal ());
+		}
 
-            var winner = false;
-            var row = 0;
-            var line = 0;
+		protected bool checkFirstDiagonal ()
+		{
+			var length = _board.BoardState.GetLength (0);
+			var board = _board.BoardState;
 
-            var prevValue = board[0, 0];
-            for (int cell = 1; cell < length; cell++)
-            {
-                row++;
-                line++;
-                if (board[row, line] == prevValue && prevValue != null)
-                {
-                    winner = true;
-                }
-                else
-                {
-                    winner = false;
-                    break;
-                }
-            }
+			var winner = false;
+			var row = 0;
+			var line = 0;
 
-            if (winner == true)
-            {
-                _winner = prevValue;
-            }
+			var prevValue = board [0, 0];
+			for (int cell = 1; cell < length; cell++) {
+				row++;
+				line++;
+				if (board [row, line] == prevValue && prevValue != null) {
+					winner = true;
+				} else {
+					winner = false;
+					break;
+				}
+			}
 
-            return winner;
-        }
+			if (winner == true) {
+				_winner = prevValue;
+			}
 
-        protected bool checkSecondDiagonal()
-        {
-            var length = _board.BoardState.GetLength(0);
-            var board = _board.BoardState;
+			return winner;
+		}
 
-            var winner = false;
-            var row = length - 1;
-            var line = 0;
+		protected bool checkSecondDiagonal ()
+		{
+			var length = _board.BoardState.GetLength (0);
+			var board = _board.BoardState;
 
-            var prevValue = board[row, line];
-            for (int cell = 1; cell < length; cell++)
-            {
-                row--;
-                line++;
+			var winner = false;
+			var row = length - 1;
+			var line = 0;
 
-                if (board[row, line] == prevValue && prevValue != null)
-                {
-                    winner = true;
-                }
-                else
-                {
-                    winner = false;
-                    break;
-                }
-            }
-            if (winner == true)
-            {
-                _winner = prevValue;
-            }
+			var prevValue = board [row, line];
+			for (int cell = 1; cell < length; cell++) {
+				row--;
+				line++;
 
-            return winner;
-        }
-    }
+				if (board [row, line] == prevValue && prevValue != null) {
+					winner = true;
+				} else {
+					winner = false;
+					break;
+				}
+			}
+			if (winner == true) {
+				_winner = prevValue;
+			}
+
+			return winner;
+		}
+	}
 }

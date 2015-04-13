@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public interface IGameFactory
 	{
-		Game Create(int numberRound);
+		Game Create (int numberRound);
 	}
 }
-

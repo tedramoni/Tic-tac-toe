@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public interface IReader
 	{
-		string Read();
+		string Read ();
 	}
 }
-

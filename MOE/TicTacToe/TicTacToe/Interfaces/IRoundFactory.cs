@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public interface IRoundFactory
 	{
-		Round Create();
+		Round Create ();
 	}
 }
-

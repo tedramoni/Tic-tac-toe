@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public interface IPlayerFactory
 	{
-		Player Create(string name, string symbol);
+		Player Create (string name, string symbol);
 	}
 }
-

@@ -1,9 +1,9 @@
 ﻿namespace TicTacToe
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
+	class Program
+	{
+		static void Main (string[] args)
+		{
 			IReader reader = new Reader ();
 			IDisplayer displayer = new Displayer ();
 			IBoardFormatter formatter = new BoardFormatter ();
@@ -14,6 +14,6 @@
 
 			ITicTacToeRunner runner = new TicTacToeRunner (reader, displayer, formatter, player_factory, round_factory, game_factory);
 			runner.Run ();
-        }
-    }
+		}
+	}
 }

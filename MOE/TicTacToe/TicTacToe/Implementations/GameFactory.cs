@@ -1,18 +1,10 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public class GameFactory : IGameFactory
 	{
-
-		#region IRoundFactory implementation
-
 		public Game Create (int numberRound)
 		{
-			return new Game(numberRound);
+			return new Game (numberRound);
 		}
-
-		#endregion
 	}
 }
-

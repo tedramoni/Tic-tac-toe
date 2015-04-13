@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace TicTacToe
+﻿namespace TicTacToe
 {
 	public interface ITicTacToeRound
 	{
-		void Start();
+		void Start ();
 	}
 }
-
