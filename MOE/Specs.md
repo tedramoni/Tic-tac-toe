@@ -10,12 +10,12 @@ Exemple de tic-tac-toe version normale :
 
 Le jeu sera réalisé en application console.
 
-Pour la notion de tour par tour, nous proposons de réaliser un programme pour une seule machine, sur laquelle les deux joueurs joueront à tour de rôle.
+Aucun élément de la grille de jeu n'étant secret, nous proposons de réaliser un programme pour une seule machine sur laquelle les deux joueurs joueront à tour de rôle.
 
 ###Déroulement de la partie
 
 Après le choix des noms et symboles, les joueurs s'affrontent lors de manches successives (minimum 5).
-Chaque manche peut se solder par une égalité, ou une victoire de l'un des joueurs; le cas échéant ce joueur marque un point.
+Chaque manche peut se solder par une égalité ou une victoire de l'un des joueurs; le cas échéant ce joueur marque un point.
 En cas d’égalité au bout de 5 manches, des manches sont ajoutées en « mort subite », autrement dit le premier joueur qui marque un point gagne la partie.
 
 **Affichage**
@@ -26,13 +26,13 @@ Sont affichés en permanence:
 
 Exemple de grille de jeu affichée dans la console :
 
-    |---|---|---| 
+    +---+---+---+ 
     |   | X | O |
-    |---|---|---|
+    |---+---+---|
     |   | O | X |
-    |---|---|---|
+    |---+---+---|
     | O |   | X |
-    |---|---|---|
+    +---+---+---+
 
 **Choix du nom et du symbole**
 
@@ -50,7 +50,7 @@ Si la case choisie était inoccupée, le pion du joueur y est ajouté.
 **Nouvelle partie**
 
 Lors de la fin d'une partie, un message indique quel joueur est vainqueur, puis il est proposé de recommencer une partie.
-Nous proposons cependant à la MOA de donner aux joueurs la possibilité de recommencer une partie à n'importe quel moment du jeu, en entrant par exemple une commande en lieu et place de leur choix de placement de pion.
+Est donnée aux joueurs la possibilité de recommencer une partie à n'importe quel moment du jeu, en entrant une commande en lieu et place de leur choix de placement de pion.
 
 Exemples de commandes :
 
@@ -63,6 +63,6 @@ Quitter la partie (la partie est sauvegardée)
 ###Stockage de la partie
 
 L’état de la partie doit être stocké au fur et à mesure, ce qui permettra en cas d'arrêt volontaire (ou non) de l'application de reprendre la partie en cours.
-Nous proposons donc de stocker l'état de la partie dans un fichier local, mis à jour à chaque action. Ce fichier est réinitialisé une fois la partie gagnée.
+Si cela convient, l'état de la partie sera stocké dans un fichier local, mis à jour à chaque action. Ce fichier est réinitialisé une fois la partie gagnée.
 
 Au lancement de l'application, si le fichier contient les valeurs d'une partie stoppée, cette dernière est rechargée .
