@@ -26,30 +26,9 @@ namespace TicTacToe
 
 		public void Start ()
 		{
-			string name;
-			string symbol;
-
-			//Création des players
-			_displayer.Show ("Prénom du joueur 1 : ");
-			name = _reader.Read ();
-
-			do {
-				_displayer.Show ("Symbole du joueur 1 : ");
-				symbol = _reader.Read ();
-			} while(Array.IndexOf (choices, symbol) == -1);
-
-			_game.Player1 = _player_factory.Create (name, symbol);
-
-			_displayer.Show ("Prénom du joueur 2 : ");
-			name = _reader.Read ();
-
-			do {
-				_displayer.Show ("Symbole du joueur 2 : ");
-				symbol = _reader.Read ();
-			} while(Array.IndexOf (choices, symbol) == -1);
-
-			_game.Player2 = _player_factory.Create (name, symbol);
-
+			if (_game.Player1 == null || _game.Player2 == null)
+				_Create_Players ();
+			
 			_displayer.Clear ();
 
 			//Lancement de la partie
@@ -79,6 +58,33 @@ namespace TicTacToe
 				_displayer.Show ("Le joueur " + _game.Player2.Name + " a gagné la partie.");
 			else
 				_displayer.Show ("Match nul !");
+		}
+
+		private void _Create_Players ()
+		{
+			string name;
+			string symbol;
+
+			//Création des players
+			_displayer.Show ("Prénom du joueur 1 : ");
+			name = _reader.Read ();
+
+			do {
+				_displayer.Show ("Symbole du joueur 1 : ");
+				symbol = _reader.Read ();
+			} while(Array.IndexOf (choices, symbol) == -1);
+
+			_game.Player1 = _player_factory.Create (name, symbol);
+
+			_displayer.Show ("Prénom du joueur 2 : ");
+			name = _reader.Read ();
+
+			do {
+				_displayer.Show ("Symbole du joueur 2 : ");
+				symbol = _reader.Read ();
+			} while(Array.IndexOf (choices, symbol) == -1);
+
+			_game.Player2 = _player_factory.Create (name, symbol);
 		}
 	}
 }
