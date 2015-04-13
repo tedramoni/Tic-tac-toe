@@ -14,9 +14,9 @@ namespace TicTacToe
 
 		static string[] choices = new string[]{ "X", "O" };
 
-		public TicTacToeGame (IReader reader, IDisplayer displayer, IBoardFormatter formatter, IPlayerFactory player_factory, IRoundFactory round_factory, IGameFactory game_factory, int numberRound = 5)
+		public TicTacToeGame (IReader reader, IDisplayer displayer, IBoardFormatter formatter, IPlayerFactory player_factory, IRoundFactory round_factory, Game game)
 		{
-			_game = game_factory.Create(numberRound);
+			_game = game;
 			_reader = reader;
 			_displayer = displayer;
 			_formatter = formatter;
@@ -30,25 +30,25 @@ namespace TicTacToe
 			string symbol;
 
 			//Création des players
-			_displayer.Show("Prénom du joueur 1 : ");
-			name = _reader.Read();
+			_displayer.Show ("Prénom du joueur 1 : ");
+			name = _reader.Read ();
 
-			do{
-				_displayer.Show("Symbole du joueur 1 : ");
-				symbol = _reader.Read();
-			}while(Array.IndexOf(choices, symbol) == -1);
+			do {
+				_displayer.Show ("Symbole du joueur 1 : ");
+				symbol = _reader.Read ();
+			} while(Array.IndexOf (choices, symbol) == -1);
 
-			_game.Player1 = _player_factory.Create(name, symbol);
+			_game.Player1 = _player_factory.Create (name, symbol);
 
-			_displayer.Show("Prénom du joueur 2 : ");
-			name = _reader.Read();
+			_displayer.Show ("Prénom du joueur 2 : ");
+			name = _reader.Read ();
 
-			do{
-				_displayer.Show("Symbole du joueur 2 : ");
-				symbol = _reader.Read();
-			}while(Array.IndexOf(choices, symbol) == -1);
+			do {
+				_displayer.Show ("Symbole du joueur 2 : ");
+				symbol = _reader.Read ();
+			} while(Array.IndexOf (choices, symbol) == -1);
 
-			_game.Player2 = _player_factory.Create(name, symbol);
+			_game.Player2 = _player_factory.Create (name, symbol);
 
 			_displayer.Clear ();
 
@@ -75,7 +75,7 @@ namespace TicTacToe
 			_displayer.Show ("Fin de partie : ", ConsoleColor.Cyan, false);
 			if (_game.Player1.NumberWin > _game.Player2.NumberWin)
 				_displayer.Show ("Le joueur " + _game.Player1.Name + " a gagné la partie.");
-			else if(_game.Player2.NumberWin > _game.Player1.NumberWin)
+			else if (_game.Player2.NumberWin > _game.Player1.NumberWin)
 				_displayer.Show ("Le joueur " + _game.Player2.Name + " a gagné la partie.");
 			else
 				_displayer.Show ("Match nul !");
