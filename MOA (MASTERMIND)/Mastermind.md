@@ -23,19 +23,22 @@ Spécifications
 
 - Le codeur choisis une combinaison de 5 chiffres qu'il garde secret.
 
-- le décodeur a pour but de trouver la combinaison de chiffre grâce aux indications données par le codeur à chacun de ses essais.
+- Le décodeur a pour but de trouver la combinaison de chiffres grâce aux indications données par le codeur à chacun de ses essais.
 
 
 ----------
-#### L'expression fonctionnelle du besoin : Déroulement du jeu.
+#### Déroulement du jeu.
 
- 1.  Le codeur choisit une combinaison de 5 chiffres (allant de 0 - 9).
+ 1.  Le codeur choisit une combinaison de 5 chiffres (allant de 0 à 9).
 
- 2. Le décodeur propose alors une première solution. (Exemple 18756)
+ 2. Le décodeur propose alors une première solution. (Exemple: 18756)
 
- 3. Le codeur renvoi alors des indices. Ces indices peuvent indiquer le nombre de chiffres trouvés et bien placés et le nombre de chiffres trouvés mais mal placés, sans préciser desquels il s'agit.
+ 3. Le codeur renvoie alors des indices qui correspondent d'une part au nombre de chiffres trouvés et bien placés, et d'autre part le nombre de chiffres trouvés mais mal placés (sans préciser desquels il s'agit).
 
- 4. Le jeu s'arrête quand le décodeur parviens à proposer la chaîne exacte et dans le bonne ordre du codeur, ou bien que celui-ci n'y arrive pas avant le nombre de tours impartis qui est de **10 tours**.
+ 4. Le jeu s'arrête quand le décodeur parvient à proposer la chaîne exacte du codeur (bons caractères, et dans le bon ordre), ou bien quand celui-ci n'y arrive pas avant le nombre de tours impartis qui est de **10 tours**.
+ 
+ 5. À la fin d'une partie, la combinaison est révélée. Si la limite de 10 tours est atteinte, la validité des indices fournis par le codeur est vérifié. Si celui-ci n'a pas induit en erreur le décodeur, il est déclaré gagnant par le jeu. Dans le cas contraire, les erreurs d'indices sont indiquées et c'est le décodeur qui remporte la partie. Si le décodeur a renseigné la bonne combinaison, il est déclaré vainqueur dans tous les cas.
+
+6. Le vainqueur est ensuite affiché à l'écran, et il est alors possible de relancer une partie ou de quitter l'application.
 
 ----------
-L'application demandée devra ainsi couvrir le besoin de bon déroulement du jeu, en respectant à la fois les règles énoncées ci-dessus, mais également les possibilités d'évolutions de celles-ci; certains détails n'étant pas encore fixés (nombre de tours, de joueurs, chiffres ou couleurs, ...)
