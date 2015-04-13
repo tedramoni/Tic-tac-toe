@@ -68,10 +68,11 @@
     <Compile Include="Implementations\BoardFactory.cs" />
     <Compile Include="Implementations\PlayerFactory.cs" />
     <Compile Include="Implementations\RoundFactory.cs" />
-    <Compile Include="Interfaces\ITicTacToeRepository.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Implementations\GameFactory.cs" />
     <Compile Include="Interfaces\IGameFactory.cs" />
+    <Compile Include="Interfaces\IGameRepository.cs" />
+    <Compile Include="Implementations\GameRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
