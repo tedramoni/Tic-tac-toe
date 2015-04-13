@@ -39,6 +39,5 @@ Spécifications
  
  5. À la fin d'une partie, la combinaison est révélée. Si la limite de 10 tours est atteinte, la validité des indices fournis par le codeur est vérifié. Si celui-ci n'a pas induit en erreur le décodeur, il est déclaré gagnant par le jeu. Dans le cas contraire, les erreurs d'indices sont indiquées et c'est le décodeur qui remporte la partie. Si le décodeur a renseigné la bonne combinaison, il est déclaré vainqueur dans tous les cas.
 
-6. Le vainqueur est ensuite affiché à l'écran, et il est alors possible de relancer une partie ou de quitter l'application.
-
+ 6. Le vainqueur est ensuite affiché à l'écran, et il est alors possible de relancer une partie ou de quitter l'application.
 ----------
