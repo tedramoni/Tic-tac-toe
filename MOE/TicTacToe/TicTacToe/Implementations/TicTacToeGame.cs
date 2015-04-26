@@ -11,10 +11,11 @@ namespace TicTacToe
 		private IBoardFormatter _formatter;
 		private IPlayerFactory _player_factory;
 		private IRoundFactory _round_factory;
+		private IGameRepository _game_repository;
 
 		static string[] choices = new string[]{ "X", "O" };
 
-		public TicTacToeGame (IReader reader, IDisplayer displayer, IBoardFormatter formatter, IPlayerFactory player_factory, IRoundFactory round_factory, Game game)
+		public TicTacToeGame (IReader reader, IDisplayer displayer, IBoardFormatter formatter, IPlayerFactory player_factory, IRoundFactory round_factory, Game game, IGameRepository game_repository)
 		{
 			_game = game;
 			_reader = reader;
@@ -22,6 +23,7 @@ namespace TicTacToe
 			_formatter = formatter;
 			_player_factory = player_factory;
 			_round_factory = round_factory;
+			_game_repository = game_repository;
 		}
 
 		public void Start ()
@@ -43,11 +45,12 @@ namespace TicTacToe
 					_game.Rounds [i] = _round_factory.Create ();
 					_game.Current = _game.Rounds [i];
 				}
+				_game_repository.Save(_game);
 				
 				_displayer.Clear ();
 
 				//For testing purpose
-				var round = new TicTacToeRound (_reader, _displayer, _formatter, _game);
+				var round = new TicTacToeRound (_reader, _displayer, _formatter, _game, _game_repository);
 				round.Start ();
 			}
 

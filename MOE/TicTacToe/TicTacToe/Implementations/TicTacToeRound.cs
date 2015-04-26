@@ -11,8 +11,9 @@ namespace TicTacToe
 		private IReader _reader;
 		private IBoardWinChecker _checker;
 		private IBoardFormatter _formatter;
+		private IGameRepository _game_repository;
 
-		public TicTacToeRound (IReader reader, IDisplayer displayer, IBoardFormatter formatter, Game game)
+		public TicTacToeRound (IReader reader, IDisplayer displayer, IBoardFormatter formatter, Game game, IGameRepository game_repository)
 		{
 			_reader = reader;
 			_displayer = displayer;
@@ -20,33 +21,38 @@ namespace TicTacToe
 			_round = _game.Current;
 			_checker = new BoardWinChecker (_round.Board);
 			_formatter = formatter;
+			_game_repository = game_repository;
 		}
 
 		public void Start ()
 		{
 			_round.Current = _game.Player1;
 
-			do {
-				_displayer.Clear ();
-				_displayer.Show (GetMenu (), ConsoleColor.Blue);
-
-				_displayer.Show (_formatter.Format (_round.Board));
-
-				string index;
-				bool validMove;
+			if (!_checker.HaveWinner () && !_checker.IsTied ()) {
 				do {
-					_displayer.Show ("Joueur " + _round.Current.Name + " a vous de choisir une case :");
-					index = _reader.Read ();
-					validMove = _round.Board.playTurn (Convert.ToInt32 (index), _round.Current);
-					if (validMove == false) {
-						_displayer.Show ("Case " + index + " déjà utilisée");
+					_displayer.Clear ();
+					_displayer.Show (GetMenu (), ConsoleColor.Blue);
 
-					}
-				} while(validMove != true);
+					_displayer.Show (_formatter.Format (_round.Board));
 
-				_round.Current = (_round.Current == _game.Player1) ? _game.Player2 : _game.Player1;
+					string index;
+					bool validMove;
+					do {
+						_displayer.Show ("Joueur " + _round.Current.Name + " a vous de choisir une case :");
+						index = _reader.Read ();
+						validMove = _round.Board.playTurn (Convert.ToInt32 (index), _round.Current);
+						if (validMove == false) {
+							_displayer.Show ("Case " + index + " déjà utilisée");
 
-			} while(!_checker.HaveWinner () && !_checker.IsTied ());
+						}
+					} while(validMove != true);
+
+					_round.Current = (_round.Current == _game.Player1) ? _game.Player2 : _game.Player1;
+
+					_game_repository.Save (_game);
+
+				} while(!_checker.HaveWinner () && !_checker.IsTied ());
+			}
 
 			if (_checker.IsTied ()) {
 				_displayer.Show ("Match nul !", ConsoleColor.Yellow);

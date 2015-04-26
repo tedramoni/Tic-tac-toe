@@ -19,15 +19,17 @@ namespace TicTacToe
 			_displayer = displayer;
 			_game_repository = game_repository;
 
-			//_game_model = game_factory.Create (NUMBER_ROUND);
 			_game_model = _game_repository.Load();
-			_game = new TicTacToeGame (_reader, _displayer, formatter, player_factory, round_factory, _game_model);
+			if(_game_model == null)
+				_game_model = game_factory.Create (NUMBER_ROUND);
+			
+			_game = new TicTacToeGame (_reader, _displayer, formatter, player_factory, round_factory, _game_model, _game_repository);
 		}
 
 		public void Run ()
 		{
 			_game.Start ();
-			_game_repository.Save (_game_model);
+			_game_repository.Delete ();
 		}
 	}
 }

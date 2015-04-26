@@ -32,7 +32,7 @@ namespace TicTacToe
 			var length = _board.BoardState.GetLength (0);
 			for (int line = 0; line < length; line++) {
 				for (int row = 0; row < length; row++) {
-					if (_board.BoardState [row, line] == null)
+					if (_board.BoardState [row][line] == null)
 						return false;
 				}
 			}
@@ -50,10 +50,10 @@ namespace TicTacToe
 			var winner = false;
 
 			for (int line = 0; line < length; line++) {
-				prevValue = board [0, line];
+				prevValue = board [0][line];
 				for (int row = 0; row < length; row++) {
 
-					if (board [row, line] == prevValue && prevValue != null) {
+					if (board [row][line] == prevValue && prevValue != null) {
 						winner = true;
 					} else {
 						winner = false;
@@ -77,10 +77,10 @@ namespace TicTacToe
 			for (int row = 0; row < length; row++) {
 
 				var winner = false;
-				var prevValue = board [row, 0];
+				var prevValue = board [row][0];
 
 				for (int line = 0; line < length; line++) {
-					if (board [row, line] == prevValue && prevValue != null) {
+					if (board [row][line] == prevValue && prevValue != null) {
 						winner = true;
 					} else {
 						winner = false;
@@ -110,11 +110,11 @@ namespace TicTacToe
 			var row = 0;
 			var line = 0;
 
-			var prevValue = board [0, 0];
+			var prevValue = board [0][0];
 			for (int cell = 1; cell < length; cell++) {
 				row++;
 				line++;
-				if (board [row, line] == prevValue && prevValue != null) {
+				if (board [row][line] == prevValue && prevValue != null) {
 					winner = true;
 				} else {
 					winner = false;
@@ -138,12 +138,12 @@ namespace TicTacToe
 			var row = length - 1;
 			var line = 0;
 
-			var prevValue = board [row, line];
+			var prevValue = board [row][line];
 			for (int cell = 1; cell < length; cell++) {
 				row--;
 				line++;
 
-				if (board [row, line] == prevValue && prevValue != null) {
+				if (board [row][line] == prevValue && prevValue != null) {
 					winner = true;
 				} else {
 					winner = false;
