@@ -39,19 +39,39 @@ namespace TicTacToe
 			if (_game.Current != null)
 				t = Array.IndexOf (_game.Rounds, _game.Current);
 
-			for (int i = t; i < _game.Rounds.Length; i++) {
-				//Si un des joueurs est dans une position ou le deuxième ne pourra remonter le score étant 
-				//donné qu'il lui faudrait plus de tour qu'il n'y en a (ex : 3 - 0, comme il n'y a que 5 tours, 
-				// le joueur 2 ne pourras dépasser le joueur1, le joueur1 a donc gagné même si le nombre de tour n'a pas été effectué)
-				if (_game.Player1.NumberWin > (_game.Rounds.Length / 2) || _game.Player2.NumberWin > (_game.Rounds.Length / 2))
-					break;
+			//Si on est en mode mort subite on ne passe pas par là
+			if (t != -1) {
+				for (int i = t; i < _game.Rounds.Length; i++) {
+					//Si un des joueurs est dans une position ou le deuxième ne pourra remonter le score étant 
+					//donné qu'il lui faudrait plus de tour qu'il n'y en a (ex : 3 - 0, comme il n'y a que 5 tours, 
+					// le joueur 2 ne pourras dépasser le joueur1, le joueur1 a donc gagné même si le nombre de tour n'a pas été effectué)
+					if (_game.Player1.NumberWin > (_game.Rounds.Length / 2) || _game.Player2.NumberWin > (_game.Rounds.Length / 2))
+						break;
 
-				if (_game.Rounds [i] == null) {
-					_game.Rounds [i] = _round_factory.Create ();
-					_game.Current = _game.Rounds [i];
+					if (_game.Rounds [i] == null) {
+						_game.Rounds [i] = _round_factory.Create ();
+						_game.Current = _game.Rounds [i];
+					}
+					_game_repository.Save(_game);
+
+					_displayer.Clear ();
+
+					var round = new TicTacToeRound (_reader, _displayer, _formatter, _game, _game_repository);
+					var returnCode = round.Start ();
+
+					if (returnCode > 0) {
+						return returnCode;
+					}
 				}
+
+				//On créer le round pour la mort subite (dans le cas ou il y en aurait besoin)
+				_game.Current = _round_factory.Create ();
 				_game_repository.Save(_game);
-				
+			}
+
+			//Lancement du mode "mort subite" si match nul
+			while (_game.Player1.NumberWin == _game.Player2.NumberWin) {
+
 				_displayer.Clear ();
 
 				var round = new TicTacToeRound (_reader, _displayer, _formatter, _game, _game_repository);
@@ -59,6 +79,12 @@ namespace TicTacToe
 
 				if (returnCode > 0) {
 					return returnCode;
+				}
+
+				//Si match nul on recréer un round et on fait ça jusqu'au moment ou les joueurs seront départagés
+				if (_game.Player1.NumberWin == _game.Player2.NumberWin) {
+					_game.Current = _round_factory.Create ();
+					_game_repository.Save(_game);
 				}
 			}
 

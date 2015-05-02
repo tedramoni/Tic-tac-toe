@@ -27,7 +27,9 @@ namespace TicTacToe
 			_round_factory = round_factory;
 			_player_factory = player_factory;
 
+			//on charge la partie dans le repo
 			_game_model = _game_repository.Load();
+
 			if(_game_model == null)
 				_game_model = game_factory.Create (NUMBER_ROUND);
 			
@@ -41,9 +43,14 @@ namespace TicTacToe
 			while (returnCode == 2) {
 				returnCode = _game.Start ();
 
+				//Code : on quite
 				if (returnCode == 0) {
 					_game_repository.Delete ();
 				}
+
+				//[1] Code : on quitte en sauvegardant
+
+				//Code : lancement d'une nouvelle partie
 				if (returnCode == 2) {
 					_displayer.Clear ();
 					_displayer.Show ("Lancement d'une nouvelle partie !");

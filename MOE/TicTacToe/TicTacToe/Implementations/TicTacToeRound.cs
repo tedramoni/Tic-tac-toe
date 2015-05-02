@@ -40,9 +40,9 @@ namespace TicTacToe
 					do {
 						_displayer.Show ("Joueur " + _round.Current.Name + " a vous de choisir une case :");
 						index = _reader.Read ();
-						if(IsCommand(index) > 0){
-							return IsCommand(index);
-						}else{
+						if (IsCommand (index) > 0) {
+							return IsCommand (index);
+						} else {
 							validMove = _round.Board.playTurn (Convert.ToInt32 (index), _round.Current);
 							if (validMove == false) {
 								_displayer.Show ("Case " + index + " déjà utilisée");
@@ -71,7 +71,8 @@ namespace TicTacToe
 			return 0;
 		}
 
-		private int IsCommand(string read){
+		private int IsCommand (string read)
+		{
 			if (read == "/quit")
 				return 1;
 			if (read == "/retry")
@@ -82,8 +83,14 @@ namespace TicTacToe
 
 		private string GetMenu ()
 		{
+			var roundNumber = (Array.IndexOf (_game.Rounds, _game.Current) == -1) ? _game.Rounds.Length : Array.IndexOf (_game.Rounds, _game.Current) + 1;
+
 			var s = "======================================================================\n " +
-			        "Round " + (Array.IndexOf (_game.Rounds, _game.Current) + 1) + " / " + _game.Rounds.Length;
+			        "Round " + roundNumber + " / " + _game.Rounds.Length + "\n";
+				
+			if (Array.IndexOf (_game.Rounds, _game.Current) == -1)
+				s += "MORT SUBITE ! \n";
+
 			s += "\n======================================================================\n";
 			s += "Menu : \t\t\t\n\t/retry : lancer une nouvelle partie \n";
 			s += "\t/quit : quitter le jeu (partie sauvegardée) \n\n";
