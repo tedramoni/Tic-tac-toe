@@ -1,20 +1,26 @@
-﻿namespace TicTacToe
+﻿using Autofac;
+
+namespace TicTacToe
 {
 	class Program
 	{
 		static void Main (string[] args)
 		{
-			IReader reader = new Reader ();
-			IDisplayer displayer = new Displayer ();
-			IBoardFormatter formatter = new BoardFormatter ();
-			IBoardFactory board_factory = new BoardFactory ();
-			IPlayerFactory player_factory = new PlayerFactory ();
-			IRoundFactory round_factory = new RoundFactory (board_factory);
-			IGameFactory game_factory = new GameFactory ();
-			IGameRepository game_repository = new GameRepository ();
+			ContainerBuilder builder = new ContainerBuilder();
+			builder.RegisterType<Reader>().As<IReader>();
+			builder.RegisterType<Displayer>().As<IDisplayer>();
+			builder.RegisterType<BoardFormatter>().As<IBoardFormatter>();
+			builder.RegisterType<BoardFactory>().As<IBoardFactory>();
+			builder.RegisterType<PlayerFactory>().As<IPlayerFactory>();
+			builder.RegisterType<RoundFactory>().As<IRoundFactory>();
+			builder.RegisterType<GameFactory>().As<IGameFactory>();
+			builder.RegisterType<GameRepository>().As<IGameRepository>();
+			builder.RegisterType<TicTacToeRunner>().As<ITicTacToeRunner>();
 
-			ITicTacToeRunner runner = new TicTacToeRunner (reader, displayer, formatter, player_factory, round_factory, game_factory, game_repository);
-			runner.Run ();
+			var container = builder.Build();
+
+			var e = container.Resolve<ITicTacToeRunner>();
+			e.Run ();
 		}
 	}
 }
