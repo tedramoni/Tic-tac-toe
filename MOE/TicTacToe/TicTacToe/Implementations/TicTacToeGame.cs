@@ -26,7 +26,7 @@ namespace TicTacToe
 			_game_repository = game_repository;
 		}
 
-		public void Start ()
+		public int Start ()
 		{
 			if (_game.Player1 == null || _game.Player2 == null)
 				_Create_Players ();
@@ -55,7 +55,11 @@ namespace TicTacToe
 				_displayer.Clear ();
 
 				var round = new TicTacToeRound (_reader, _displayer, _formatter, _game, _game_repository);
-				round.Start ();
+				var returnCode = round.Start ();
+
+				if (returnCode > 0) {
+					return returnCode;
+				}
 			}
 
 			_displayer.Show ("Fin de partie : ", ConsoleColor.Cyan, false);
@@ -68,6 +72,8 @@ namespace TicTacToe
 			
 			_displayer.Show ("Appuyer sur une touche pour continuer...");
 			_reader.Read ();
+
+			return 0;
 		}
 
 		private void _Create_Players ()

@@ -2,6 +2,6 @@
 {
 	public interface ITicTacToeGame
 	{
-		void Start ();
+		int Start ();
 	}
 }

@@ -24,7 +24,7 @@ namespace TicTacToe
 			_game_repository = game_repository;
 		}
 
-		public void Start ()
+		public int Start ()
 		{
 			_round.Current = _game.Player1;
 
@@ -40,10 +40,13 @@ namespace TicTacToe
 					do {
 						_displayer.Show ("Joueur " + _round.Current.Name + " a vous de choisir une case :");
 						index = _reader.Read ();
-						validMove = _round.Board.playTurn (Convert.ToInt32 (index), _round.Current);
-						if (validMove == false) {
-							_displayer.Show ("Case " + index + " déjà utilisée");
-
+						if(IsCommand(index) > 0){
+							return IsCommand(index);
+						}else{
+							validMove = _round.Board.playTurn (Convert.ToInt32 (index), _round.Current);
+							if (validMove == false) {
+								_displayer.Show ("Case " + index + " déjà utilisée");
+							}
 						}
 					} while(validMove != true);
 
@@ -64,6 +67,17 @@ namespace TicTacToe
 			_displayer.Show (_formatter.Format (_round.Board));
 			_displayer.Show ("Appuyer sur une touche pour continuer...");
 			_reader.Read ();
+
+			return 0;
+		}
+
+		private int IsCommand(string read){
+			if (read == "/quit")
+				return 1;
+			if (read == "/retry")
+				return 2;
+
+			return 0;
 		}
 
 		private string GetMenu ()
@@ -71,7 +85,8 @@ namespace TicTacToe
 			var s = "======================================================================\n " +
 			        "Round " + (Array.IndexOf (_game.Rounds, _game.Current) + 1) + " / " + _game.Rounds.Length;
 			s += "\n======================================================================\n";
-			s += "Menu : NONE\t\t\t\n";
+			s += "Menu : \t\t\t\n\t/retry : lancer une nouvelle partie \n";
+			s += "\t/quit : quitter le jeu (partie sauvegardée) \n\n";
 			s += "Scores : " + _game.Player1.Name + " : " + _game.Player1.NumberWin + "\n";
 			s += "\t " + _game.Player2.Name + " : " + _game.Player2.NumberWin + "\n";
 			s += "======================================================================\n";

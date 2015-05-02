@@ -2,6 +2,6 @@
 {
 	public interface ITicTacToeRound
 	{
-		void Start ();
+		int Start ();
 	}
 }
