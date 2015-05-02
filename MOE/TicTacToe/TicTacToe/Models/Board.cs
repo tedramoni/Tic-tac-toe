@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace TicTacToe
 {
+	[DataContract]
 	public class Board
 	{
 		private Player[][] _board_state;
 
+		[DataMember]
 		public Player[][] BoardState { get { return _board_state; } set { _board_state = value; } }
 
 

@@ -40,6 +40,11 @@ namespace TicTacToe
 				t = Array.IndexOf (_game.Rounds, _game.Current);
 
 			for (int i = t; i < _game.Rounds.Length; i++) {
+				//Si un des joueurs est dans une position ou le deuxième ne pourra remonter le score étant 
+				//donné qu'il lui faudrait plus de tour qu'il n'y en a (ex : 3 - 0, comme il n'y a que 5 tours, 
+				// le joueur 2 ne pourras dépasser le joueur1, le joueur1 a donc gagné même si le nombre de tour n'a pas été effectué)
+				if (_game.Player1.NumberWin > (_game.Rounds.Length / 2) || _game.Player2.NumberWin > (_game.Rounds.Length / 2))
+					break;
 
 				if (_game.Rounds [i] == null) {
 					_game.Rounds [i] = _round_factory.Create ();
@@ -49,7 +54,6 @@ namespace TicTacToe
 				
 				_displayer.Clear ();
 
-				//For testing purpose
 				var round = new TicTacToeRound (_reader, _displayer, _formatter, _game, _game_repository);
 				round.Start ();
 			}
@@ -61,6 +65,9 @@ namespace TicTacToe
 				_displayer.Show ("Le joueur " + _game.Player2.Name + " a gagné la partie.");
 			else
 				_displayer.Show ("Match nul !");
+			
+			_displayer.Show ("Appuyer sur une touche pour continuer...");
+			_reader.Read ();
 		}
 
 		private void _Create_Players ()
