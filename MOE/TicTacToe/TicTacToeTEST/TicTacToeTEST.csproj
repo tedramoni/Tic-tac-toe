@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BoardTEST.cs" />
     <Compile Include="BoardWinCheckerTEST.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
