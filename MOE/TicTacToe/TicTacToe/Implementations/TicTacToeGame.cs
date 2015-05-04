@@ -96,8 +96,17 @@ namespace TicTacToe
 			else
 				_displayer.Show ("Match nul !");
 			
-			_displayer.Show ("Appuyer sur une touche pour continuer...");
-			_reader.Read ();
+			String userChoice = "";
+			do {
+				_displayer.Show ("Voulez vous recommencer une partie ? [O/N]");
+				userChoice = _reader.Read ();
+
+				if (userChoice.ToLower () == "o") {
+					return 2;
+				} else if (userChoice.ToLower () == "n") {
+					return 0;
+				}
+			} while(userChoice.ToLower () != "o" | userChoice.ToLower () != "n");
 
 			return 0;
 		}
