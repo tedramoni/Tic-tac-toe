@@ -1,7 +1,7 @@
 ![PreviewImage](http://i.imgur.com/WnQqu2z.png?1)  TicTacToe
 =======
 
-> Le Mastermind ou Master Mind est un jeu de société pour deux joueurs dont le but est de trouver un code. C'est un jeu de réflexion, et de déduction, inventé par Mordecai Meirowitz dans les années 1970 alors qu'il travaillait comme expert en télécommunications. Il rappelle un jeu sur papier plus ancien d'au moins un siecle appelé "Bulls and Cows".
+> Le Tic-tac-toe est un jeu de réflexion se pratiquant à deux joueurs au tour par tour et dont le but est de créer le premier un alignement. Il se joue sur une grille carrée de 3×3 cases. Deux joueurs s'affrontent, et doivent remplir chacun à leur tour une case de la grille avec le symbole qui leur est attribué : O ou X. Le gagnant est celui qui arrive à aligner trois symboles identiques, horizontalement, verticalement ou en diagonale.
 >
 > *Source: Wikipédia.*
 
