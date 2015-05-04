@@ -43,9 +43,5 @@ namespace TicTacToe
 
 			}
 		}
-
-		public double getNbCells(){
-			return Math.Pow (_board_state.Length, 2);
-		}
 	}
 }
