@@ -40,10 +40,19 @@ namespace TicTacToe
 					do {
 						_displayer.Show ("Joueur " + _round.Current.Name + " a vous de choisir une case :");
 						index = _reader.Read ();
+						Console.WriteLine(_game.Current.Board.BoardState.Length);
+						int n;
 						if (IsCommand (index) > 0) {
 							return IsCommand (index);
+<<<<<<< HEAD
 						} else {
 
+=======
+						} else if(int.TryParse(index, out n) == false || Convert.ToInt32 (index) >_game.Current.Board.getNbCells() | Convert.ToInt32 (index) < 1) {
+							validMove = false;
+							_displayer.Show ("La saisie " + index + " ne correspond pas à une case");
+						} else{
+>>>>>>> Check user input before "playTurn"
 							validMove = _round.Board.playTurn (Convert.ToInt32 (index), _round.Current);
 							if (validMove == false) {
 								_displayer.Show ("Case " + index + " déjà utilisée");
