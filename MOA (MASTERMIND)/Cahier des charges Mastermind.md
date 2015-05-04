@@ -41,7 +41,7 @@ Spécifications
  
  6. Le vainqueur est ensuite affiché à l'écran, et il est alors possible de relancer une partie ou de quitter l'application.
 
-
+----------
 #### Fonctionnalité bonus
 
 Il serait appréciable d'ajouter une option permettant à un joueur d'affronter l'ordinateur. Ce dernier aurait alors le rôle du codeur, et générerait à la fois la combinaison à trouver et les indices de chaque tour, sans risque d'erreurs.
