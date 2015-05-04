@@ -7,217 +7,8 @@ namespace TicTacToeTST
 	[TestFixture ()]
 	public class BoardWinCheckerTEST
 	{
+
 		[Test ()]
-		public void checkRowsTest ()
-		{
-			string errMsg;s
-			int boardSize = 3;
-			Player player1;
-			Board boardTEST;
-			BoardWinChecker boardWinCheckerTEST;
-			//L'objet PrivateObject permet d'acceder aux methodes normalement
-			//privee de l'objet clone
-			PrivateObject privateObject;
-
-			player1 = new Player("Bob", "O");
-
-			//TEST SUR LA PREMIERE LIGNE
-			boardTEST = new Board(boardSize);
-			boardWinCheckerTEST = new BoardWinChecker(boardTEST);
-			privateObject = new PrivateObject(boardWinCheckerTEST);
-
-			boardTEST.playTurn(1, player1);
-			boardTEST.playTurn(3, player1);
-			//Etat de la grille
-			//O   O
-			//
-			//
-			//Premiere ligne non remplie par Joueur 1 : checkRows doit renvoyer false
-			errMsg = "Erreur : victoire détectée sur la premiere ligne";
-			Assert.IsFalse((bool)privateObject.Invoke("checkRows"), errMsg);
-
-			boardTEST.playTurn(2, player1);
-			//Etat de la grille
-			//O O O
-			//
-			//
-			//Premiere ligne  remplie par Joueur 1 : checkRows doit renvoyer true
-			errMsg = "Erreur : victoire non détectée sur la premiere ligne";
-			Assert.IsTrue((bool)privateObject.Invoke("checkRows"), errMsg);
-
-			//TEST SUR LA DERNIERE LIGNE
-			player1 = new Player("Bob", "O");
-			boardTEST = new Board(boardSize);
-			boardWinCheckerTEST = new BoardWinChecker(boardTEST);
-			privateObject = new PrivateObject(boardWinCheckerTEST);
-
-			boardTEST.playTurn(7, player1);
-			boardTEST.playTurn(8, player1);
-			//Etat de la grille
-			//   
-			//
-			//O O  
-			//Derniere ligne non remplie par Joueur 1 : checkRows doit renvoyer false
-			errMsg = "Erreur : victoire détectée sur la derniere ligne";
-			Assert.IsFalse((bool)privateObject.Invoke("checkRows"), errMsg);
-
-			boardTEST.playTurn(9, player1);
-			//Etat de la grille
-			//O O O
-			//
-			//
-			//Derniere ligne  remplie par Joueur 1 : checkRows doit renvoyer true
-			errMsg = "Erreur : victoire non détectée sur la derniere ligne";
-			Assert.IsTrue((bool)privateObject.Invoke("checkRows"), errMsg);
-
-		}
-
-
-		[TestMethod]
-		public void checkLinesTest()
-		{
-			string errMsg;
-			int boardSize = 3;
-			Player player1;
-			Board boardTEST;
-			BoardWinChecker boardWinCheckerTEST;
-			//L'objet PrivateObject permet d'acceder aux methodes normalement
-			//privee de l'objet clone
-			PrivateObject privateObject;
-
-			player1 = new Player("Bob", "O");
-
-			//TEST SUR LA PREMIERE COLONNE
-			boardTEST = new Board(boardSize);
-			boardWinCheckerTEST = new BoardWinChecker(boardTEST);
-			privateObject = new PrivateObject(boardWinCheckerTEST);
-
-			boardTEST.playTurn(1, player1);
-			boardTEST.playTurn(4, player1);
-			//Etat de la grille
-			//O  
-			//O
-			//
-			//Premiere colonne non remplie par Joueur 1 : checkLines doit renvoyer false
-			errMsg = "Erreur : victoire détectée sur la premiere colonne";
-			Assert.IsFalse((bool)privateObject.Invoke("checkLines"), errMsg);
-
-			boardTEST.playTurn(7, player1);
-			//Etat de la grille
-			//O 
-			//O
-			//O
-			//Premiere colonne remplie par Joueur 1 : checkLines doit renvoyer true
-			errMsg = "Erreur : victoire non détectée sur la premiere colonne";
-			Assert.IsTrue((bool)privateObject.Invoke("checkLines"), errMsg);
-
-			//TEST SUR LA DERNIERE COLONNE
-			boardTEST = new Board(boardSize);
-			boardWinCheckerTEST = new BoardWinChecker(boardTEST);
-			privateObject = new PrivateObject(boardWinCheckerTEST);
-
-			boardTEST.playTurn(3, player1);
-			boardTEST.playTurn(6, player1);
-			//Etat de la grille
-			//     O  
-			//     O
-			//
-			//Derniere colonne non remplie par Joueur 1 : checkLines doit renvoyer false
-			errMsg = "Erreur : victoire détectée sur la premiere colonne";
-			Assert.IsFalse((bool)privateObject.Invoke("checkLines"), errMsg);
-
-			boardTEST.playTurn(9, player1);
-			//Etat de la grille
-			//     O  
-			//     O
-			//     O
-			//Derniere colonne remplie par Joueur 1 : checkLines doit renvoyer true
-			errMsg = "Erreur : victoire non détectée sur la premiere colonne";
-			Assert.IsTrue((bool)privateObject.Invoke("checkLines"), errMsg);
-
-		}
-
-
-		[TestMethod]
-		public void checkFirstDiagonalTest()
-		{
-			string errMsg;
-			int boardSize = 3;
-			Player player1;
-			Board boardTEST;
-			BoardWinChecker boardWinCheckerTEST;
-			//L'objet PrivateObject permet d'acceder aux methodes normalement
-			//privee de l'objet clone
-			PrivateObject privateObject;
-
-			player1 = new Player("Bob", "O");
-
-			boardTEST = new Board(boardSize);
-			boardWinCheckerTEST = new BoardWinChecker(boardTEST);
-			privateObject = new PrivateObject(boardWinCheckerTEST);
-
-			boardTEST.playTurn(1, player1);
-			boardTEST.playTurn(5, player1);
-			//Etat de la grille
-			//O  
-			//  O
-			//
-			//Premiere diagonale non remplie par Joueur 1 : checkFirstDiagonal doit renvoyer false
-			errMsg = "Erreur : victoire détectée sur la premiere diagonale";
-			Assert.IsFalse((bool)privateObject.Invoke("checkFirstDiagonal"), errMsg);
-
-			boardTEST.playTurn(9, player1);
-			//Etat de la grille
-			//O  
-			//  O
-			//    O
-			//Premiere diagonale remplie par Joueur 1 : checkFirstDiagonal doit renvoyer true
-			errMsg = "Erreur : victoire non détectée sur la premiere diagonale";
-			Assert.IsTrue((bool)privateObject.Invoke("checkFirstDiagonal"), errMsg);
-
-		}
-
-		[TestMethod]
-		public void checkSecondDiagonalTest()
-		{
-			string errMsg;
-			int boardSize = 3;
-			Player player1;
-			Board boardTEST;
-			BoardWinChecker boardWinCheckerTEST;
-			//L'objet PrivateObject permet d'acceder aux methodes normalement
-			//privee de l'objet clone
-			PrivateObject privateObject;
-
-			player1 = new Player("Bob", "O");
-
-			boardTEST = new Board(boardSize);
-			boardWinCheckerTEST = new BoardWinChecker(boardTEST);
-			privateObject = new PrivateObject(boardWinCheckerTEST);
-
-			boardTEST.playTurn(3, player1);
-			boardTEST.playTurn(5, player1);
-			//Etat de la grille
-			//    O  
-			//  O
-			//
-			//Deuxieme diagonale non remplie par Joueur 1 : checkSecondDiagonal doit renvoyer false
-			errMsg = "Erreur : victoire détectée sur la deuxieme diagonale";
-			Assert.IsFalse((bool)privateObject.Invoke("checkSecondDiagonal"), errMsg);
-
-			boardTEST.playTurn(7, player1);
-			//Etat de la grille
-			//    O  
-			//  O
-			//O
-			//Deuxieme diagonale remplie par Joueur 1 : checkSecondDiagonal doit renvoyer true
-			errMsg = "Erreur : victoire non détectée sur la deuxieme diagonale";
-			Assert.IsTrue((bool)privateObject.Invoke("checkSecondDiagonal"), errMsg);
-
-		}
-
-
-		[TestMethod]
 		public void haveWinnerTest()
 		{
 			string errMsg;
@@ -236,7 +27,7 @@ namespace TicTacToeTST
 				{   
 					boardTEST.playTurn(boardSize*j + i , player1);
 				}
-				errMsg = "Erreur : victoire non detecté pour la ligne " + (j + 1);
+				errMsg = "Erreur : victoire non detectée pour la ligne " + (j + 1);
 				Assert.IsTrue(boardWinCheckerTEST.HaveWinner(), errMsg);
 			}
 
@@ -250,7 +41,7 @@ namespace TicTacToeTST
 				{
 					boardTEST.playTurn(boardSize * i + j, player1);
 				}
-				errMsg = "Erreur : victoire non detecté pour la colonne " + j;
+				errMsg = "Erreur : victoire non detectée pour la colonne " + j;
 				Assert.IsTrue(boardWinCheckerTEST.HaveWinner(), errMsg);
 			}
 
@@ -265,7 +56,7 @@ namespace TicTacToeTST
 				{
 					boardTEST.playTurn(boardSize * j + i, player1);
 				}
-				errMsg = "Erreur : victoire detecté pour la ligne " + (j + 1);
+				errMsg = "Erreur : victoire detectée pour la ligne " + (j + 1);
 				Assert.IsFalse(boardWinCheckerTEST.HaveWinner(), errMsg);
 			}
 
@@ -280,16 +71,44 @@ namespace TicTacToeTST
 				{
 					boardTEST.playTurn(boardSize * i + j, player1);
 				}
-				errMsg = "Erreur : victoire detecté pour la colonne " + j;
+				errMsg = "Erreur : victoire detectée pour la colonne " + j;
 				Assert.IsFalse(boardWinCheckerTEST.HaveWinner(), errMsg);
 			}
+
+			//on teste la victoire sur la premiere diagonale
+			player1 = new Player("Bob", "O");
+			boardTEST = new Board(boardSize);
+			boardWinCheckerTEST = new BoardWinChecker(boardTEST);
+			for (int i = 0; i <= boardSize-1; i++)
+			{
+				boardTEST.playTurn(boardSize * i + (i + 1), player1);
+			}
+			//Etat de la grille
+			//O
+			//   O
+			//     O
+			errMsg = "Erreur : victoire non detectée pour la premiere diagonale";
+			Assert.IsTrue(boardWinCheckerTEST.HaveWinner(), errMsg);
+
+			//on teste la victoire sur la deuxieme diagonale
+			player1 = new Player("Bob", "O");
+			boardTEST = new Board(boardSize);
+			boardWinCheckerTEST = new BoardWinChecker(boardTEST);
+			for (int i = 0; i <= boardSize-1; i++)
+			{
+				boardTEST.playTurn(i*boardSize + boardSize - i, player1);
+			}
+			//Etat de la grille
+			//    O
+			//  O
+			//O
+			errMsg = "Erreur : victoire non detectée pour la premiere diagonale";
+			Assert.IsTrue(boardWinCheckerTEST.HaveWinner(), errMsg);
+
 		}//haveWinnerTest()
 
 
-
-
-
-		[TestMethod]
+		[Test ()]
 		public void IsTiedTest()
 		{
 			string errMsg;
