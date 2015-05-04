@@ -101,12 +101,12 @@ namespace TicTacToe
 				_displayer.Show ("Voulez vous recommencer une partie ? [O/N]");
 				userChoice = _reader.Read ();
 
-				if (userChoice.ToLower () == "o") {
+				if (userChoice != null && userChoice.ToLower () == "o") {
 					return 2;
-				} else if (userChoice.ToLower () == "n") {
+				} else if (userChoice != null && userChoice.ToLower () == "n") {
 					return 0;
 				}
-			} while(userChoice.ToLower () != "o" | userChoice.ToLower () != "n");
+			} while(userChoice == null || userChoice.ToLower () != "o" | userChoice.ToLower () != "n");
 
 			return 0;
 		}
@@ -122,7 +122,10 @@ namespace TicTacToe
 
 			do {
 				_displayer.Show ("Symbole du joueur 1 : ");
-				symbol = _reader.Read ().ToUpper();
+				symbol = _reader.Read ();
+				if (symbol != null) {
+					symbol = symbol.ToUpper ();
+				}
 			} while(Array.IndexOf (choices, symbol) == -1);
 
 			_game.Player1 = _player_factory.Create (name, symbol);
