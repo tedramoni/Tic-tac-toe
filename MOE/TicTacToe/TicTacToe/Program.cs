@@ -14,7 +14,7 @@ namespace TicTacToe
 			builder.RegisterType<PlayerFactory>().As<IPlayerFactory>();
 			builder.RegisterType<RoundFactory>().As<IRoundFactory>();
 			builder.RegisterType<GameFactory>().As<IGameFactory>();
-			builder.RegisterType<GameRepository>().As<IGameRepository>();
+			builder.RegisterType<GameRepositoryJSON>().As<IGameRepository>();
 			builder.RegisterType<TicTacToeRunner>().As<ITicTacToeRunner>();
 
 			var container = builder.Build();

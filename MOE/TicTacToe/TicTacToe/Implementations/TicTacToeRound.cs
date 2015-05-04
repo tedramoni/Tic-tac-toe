@@ -43,6 +43,7 @@ namespace TicTacToe
 						if (IsCommand (index) > 0) {
 							return IsCommand (index);
 						} else {
+
 							validMove = _round.Board.playTurn (Convert.ToInt32 (index), _round.Current);
 							if (validMove == false) {
 								_displayer.Show ("Case " + index + " déjà utilisée");

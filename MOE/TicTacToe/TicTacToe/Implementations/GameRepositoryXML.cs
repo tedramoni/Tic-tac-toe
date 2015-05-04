@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace TicTacToe
 {
-	public class GameRepository : IGameRepository
+	public class GameRepositoryXML : IGameRepository
 	{
 		public bool Save (Game game)
 		{

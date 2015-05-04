@@ -45,6 +45,9 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -76,7 +79,8 @@
     <Compile Include="Implementations\GameFactory.cs" />
     <Compile Include="Interfaces\IGameFactory.cs" />
     <Compile Include="Interfaces\IGameRepository.cs" />
-    <Compile Include="Implementations\GameRepository.cs" />
+    <Compile Include="Implementations\GameRepositoryXML.cs" />
+    <Compile Include="Implementations\GameRepositoryJSON.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
