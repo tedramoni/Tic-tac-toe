@@ -26,5 +26,14 @@ namespace TicTacToe
 		{
 			_rounds = new Round[numberRound];
 		}
+
+		public static bool Equals(Game g1, Game g2)
+		{
+			bool player1 = Player.Equals (g1.Player1, g2.Player1);
+			bool player2 = Player.Equals (g1.Player2, g2.Player2);
+			bool rounds = Round.Equals (g1.Rounds, g2.Rounds);
+			bool current = Round.Equals (g1.Current, g2.Current);
+			return (player1 && player2 && rounds && current);
+		}
 	}
 }

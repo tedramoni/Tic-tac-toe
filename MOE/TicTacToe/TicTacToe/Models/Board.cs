@@ -48,5 +48,11 @@ namespace TicTacToe
 		{
 			return Math.Pow (_board_state.Length, 2);
 		}
+
+		public static bool Equals(Board b1,Board b2)
+		{
+			bool boardstate = Player.Equals (b1.BoardState, b2.BoardState);
+			return boardstate;
+		}
 	}
 }
