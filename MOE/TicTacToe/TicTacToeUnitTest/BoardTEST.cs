@@ -28,10 +28,10 @@ namespace TicTacToeTST
 				var length = player.GetLength (0);
 				errMsg = "Erreur : playTurn n'a pas fonctionné sur la cellule "+i;
 				if (i % length == 0){
-					Assert.IsTrue(player[i/length-1][length-1]==player1,errMsg);
+					Assert.IsTrue(Board.Equals(player[i/length-1][length-1],player1),errMsg);
 				} 
 				else {
-					Assert.IsTrue(player[(int)Math.Truncate((double)(i / length))][i % length - 1] == player1, errMsg);
+					Assert.IsTrue(Board.Equals(player[(int)Math.Truncate((double)(i / length))][i % length - 1],player1), errMsg);
 				}
 			}
 
