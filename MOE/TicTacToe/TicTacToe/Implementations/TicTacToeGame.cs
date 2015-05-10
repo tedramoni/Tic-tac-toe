@@ -138,7 +138,7 @@ namespace TicTacToe
 			} else {
 				symbol = choices [0];
 			}
-			_displayer.Show (name + " votre symbol est: "+ symbol);
+			_displayer.Show (name + " votre symbole est: "+ symbol);
 
 			_displayer.Show ("\nAppuyez sur une touche pour continuer", ConsoleColor.Yellow);
 			_reader.Read ();
