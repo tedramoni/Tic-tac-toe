@@ -93,17 +93,20 @@ En cas d’égalité au bout des 5 manches, des manches sont ajoutées en « mor
 
 ###Interface
 
-![SCREEN1](https://i.imgur.com/PhXEftU.png)
+![SCREEN1](https://i.imgur.com/yQBNZUV.png)
+> Choix des prénoms
 
-![SCREEN2](https://i.imgur.com/3EXm5ay.png)
+![SCREEN2](https://i.imgur.com/G6YDhXs.png)
+> Choix d'une case
 
-![SCREEN3](https://i.imgur.com/gqJlsmk.png)
+![SCREEN3](https://i.imgur.com/PhXEftU.png)
+> Choix d'une case
 
-![SCREEN4](https://i.imgur.com/G6YDhXs.png)
+![SCREEN4](https://i.imgur.com/gqJlsmk.png)
+> Choix d'une case
 
-![SCREEN5](https://i.imgur.com/yQBNZUV.png)
-
-![SCREEN8](https://i.imgur.com/QeIlhjy.png)
+![SCREEN5](https://i.imgur.com/QeIlhjy.png)
+>  Fin de la partie
 
 L’interface est composée:
 
