@@ -10,7 +10,7 @@
 Dans le cadre de l’UE « Atelier de Génie Logiciel », il nous a été demandé de conduire un projet de développement logiciel s’appuyant sur des outils informatiques qui en facilitent la conception et la mise en œuvre technique. Le sujet proposé a pour but de se rapprocher un peu plus des projets “réels”, sous la forme de deux missions (MOE et MOA) qui concernent le développement de jeux de société en coopération avec d’autre groupes.
 Tandis que la partie MOA consiste à énoncer le besoin d’un jeu de Mastermind, la partie MOE doit répondre à un appel d’offres du jeu de Tic-Tac-Toe (et l’implémenter en langage C#).
 
-À travers ces deux missions, nous sommes amenés à synchroniser notre travail de groupe et à communiquer avec deux autres équipes. Pour mener à bien ce projet, un certain nombre de contraintes sont à prendre en compte et l’équipe devra s’appuyer sur des moyens élaborés et adaptés à ces tâches. Des outils de génie logiciel englobant les différentes phases du projet et permettant le travail simultané de tous les membres, tels que GitHub (pour la gestion des versions) ou Trello (pour la répartition des tâches), sont vivement recommandés.
+À travers ces deux missions, nous sommes amenés à synchroniser notre travail de groupe et à communiquer avec deux autres équipes. Pour mener à bien ce projet, un certain nombre de contraintes sont à prendre en compte et l’équipe devra s’appuyer sur des moyens élaborés et adaptés à ces problématiques. Des outils de génie logiciel englobant les différentes phases du projet et permettant le travail simultané de tous les membres, tels que GitHub (pour la gestion des versions) ou Trello (pour la répartition des tâches), sont vivement recommandés.
 
 ##Méthode de travail et organisation de l’équipe
 
@@ -55,9 +55,9 @@ Ces objets ont pour but de stocker l’image de la partie en cours.
 
 ####Les interfaces & les implémentations
 
-Utiliser des interfaces nous a permis d’éviter les problèmes de dépendances entre nos différentes classes. En définissants des “squelettes” sans se préoccuper du fonctionnement interne, nous avons pu créer plusieurs implémentations d’une interface sans changer le code dans lequel elle est utilisée. 
+Utiliser des interfaces nous a permis d’éviter les problèmes de dépendances entre nos différentes classes. En définissant des “squelettes” sans se préoccuper du fonctionnement interne, nous avons pu créer plusieurs implémentations d’une interface sans changer le code dans lequel elle est utilisée. 
 
-Prenons l’exemple de l’interface IGameRepository : dans le code fonctionnel nous utilisons le repository sans connaître son fonctionnement interne. L’implémentation peut stocker sous le format JSON ou le format XML, le tout c’est qu’elle sauvegarde un objet **Game** et qu’elle charge un objet **Game**.
+Prenons l’exemple de l’interface IGameRepository : dans le code fonctionnel, nous utilisons le repository sans connaître son fonctionnement interne. L’implémentation peut stocker sous le format JSON ou le format XML, le tout c’est qu’elle sauvegarde un objet **Game** et qu’elle charge un objet **Game**.
 
 Cette méthode est utilisée sur l’ensemble du projet.
 
@@ -71,19 +71,19 @@ Ceci nous permet par exemple de changer d’implémentation rapidement et simple
 
 ![SRP](http://i.imgur.com/yEAgSuk.png)
 
-Nous avons utilisé le design pattern **Single Responsibility Principle** qui consiste à découper les fonctionnalités au maximum et ainsi concevoir et réaliser chaque classe pour qu’elle n’ai une seule tâche à accomplir. Puisqu’une classe a une simple tâche a accomplir, il doit y avoir une seule raison pour qu’elle change. Cela permet de réduire la complexité du programme car chaque fonctionnalité peut être traité et modifié séparément.
+Nous avons utilisé le design pattern **Single Responsibility Principle** qui consiste à découper les fonctionnalités au maximum et ainsi concevoir et réaliser chaque classe pour qu’elle n’ait qu'une seule tâche à accomplir. Puisqu’une classe a une simple tâche à accomplir, il doit y avoir une seule raison pour qu’elle change. Cela permet de réduire la complexité du programme car chaque fonctionnalité peut être traitée et modifiée séparément, ce qui réduit considérablement les coûts de maintenance et rend possible les tests unitaires.
 
 Le code est alors plus robuste, plus facile à lire et à comprendre avec un nommage des classes adapté. Le découpage permet également de faciliter les tests unitaires.
 
 ###Test unitaires
 
-Afin de s’assurer du bon fonctionnement du programme et de ses fonctionnalités, nous avons mis en place des tests unitaires. Ces tests couvrent les fonctions représentatives du programme  relatives au bon déroulement de la partie et à la sauvegarde et au chargement de la partie.
+Afin de s’assurer du bon fonctionnement du programme et de ses fonctionnalités, nous avons mis en place des tests unitaires. Ces tests couvrent les fonctions représentatives du programme relatives au bon déroulement de la partie et à la sauvegarde et au chargement de la partie.
 
-Les tests unitaires rentrent dans la logique de pérennisation du programme, ils permettent de trouver les erreurs rapidement en identifiant le/les module(s) non-fonctionnel(s), sécuriser la maintenance en obligeant à faire des modifications dans le code ou en réécrivant les tests pour correspondre aux nouvelles attentes.
+Les tests unitaires rentrent dans la logique de pérennisation du programme : ils permettent de trouver les erreurs rapidement en identifiant le/les module(s) non-fonctionnel(s), sécuriser la maintenance en obligeant à faire des modifications dans le code ou en réécrivant les tests pour correspondre aux nouvelles attentes.
 Les tests unitaires dans ce projet utilisent le framework NUnit pour .NET, qui est open-source.
 
 Les fonctions de type Assert employées dans les tests unitaires permettent, comme leur nom l’indique, d’affirmer qu’une opération effectuée renvoie la valeur attendue ou non.
-Les tests unitaires sont inclus dans la solution TicTacToe, dans un projet dédié “TicTacToeUnitTest”.
+Les tests unitaires sont inclus dans la solution TicTacToe, dans un projet dédié intitulé “TicTacToeUnitTest”.
 
 ##Présentation des fonctionnalités
 
@@ -112,19 +112,19 @@ L’interface est composée:
 
  - d’un bandeau supérieur affichant:
 	- le numéro du round en cours
-	- du listage des commandes du menu:
+	- les commandes du menu incluant:
 		- /retry pour lancer une nouvelle partie
 		- /quit pour quitter le jeu, tout en sauvegardant la partie
-	- de l’historique des scores (nombres de parties gagnées)
+	- l’historique des scores (nombres de parties gagnées)
  - De la grille de jeu, indiquant pour chaque case son numéro si elle est inoccupée, le symbole du joueur qui l’occupe sinon.
  - D’une phrase indiquant quel joueur doit entrer son choix de case
 
 ###Déroulement d’une partie
 
-Au lancement du programme, le joueur numéro 1 est invité a saisir son nom et a choisir son symbole, X ou O. Le joueur deux entre alors son nom et le programme l’informe du symbole qui lui est attribué.
+Au lancement du programme, le joueur numéro 1 est invité à saisir son nom et à choisir son symbole, X ou O. Le joueur 2 entre alors son nom et le programme l’informe du symbole qui lui est attribué.
 
-L’interface décrite ci-dessus est alors chargée et le joueur 1 est alors invité a choisir la case ou il souhaite placer son symbole, en entrant un numéro entre 1 et 9 et en validant en appuyant sur la touche Enter. La grille est alors rechargée pour prendre en compte le symbole nouvellement ajouté. C’est alors au joueur deux de jouer et ainsi de suite jusqu'à une victoire ou une égalité (grille pleine mais aucun gagnant).
-En cas de victoire d’un des deux joueurs, son score dans le bandeau supérieur est mis a jour est le round suivant est chargé.
+L’interface décrite ci-dessus est alors chargée et le joueur 1 est alors invité à choisir la case où il souhaite placer son symbole, en entrant un numéro entre 1 et 9 et en validant en appuyant sur la touche Enter. La grille est alors rechargée pour prendre en compte le symbole nouvellement ajouté. C’est alors au joueur 2 de jouer et ainsi de suite jusqu'à une victoire ou une égalité (grille pleine mais aucun gagnant).
+En cas de victoire d’un des deux joueurs, son score dans le bandeau supérieur est mis à jour et le round suivant est chargé.
 
 Si un joueur remporte 3 rounds, le jeu est alors terminé, sinon le gagnant est celui ayant le plus de victoires dans les 5 rounds.
 
@@ -133,13 +133,13 @@ En cas d’égalité, une manche de mort subite est lancée et le gagnant de cet
 À la fin d’une partie, les joueurs sont invités à en recommencer une nouvelle, en entrant “o” pour oui ou “n” pour non.
 
 À tout moment, les joueurs peuvent entrer une commande à la place du numéro de la case, /retry pour lancer une nouvelle partie ou /quit pour quitter le jeu, tout en sauvegardant la partie.
-La partie est sauvegardé lorsque l’on quitte le programme, que ce soit en utilisant la commande /quit ou en fermant la console. La partie est alors restaurée lors du prochain lancement du programme.
+La partie est sauvegardée lorsque l’on quitte le programme, que ce soit en utilisant la commande /quit ou en fermant la console. La partie est alors restaurée lors du prochain lancement du programme.
 
 #4 - Bilan du projet
 
 ##Difficultés rencontrées et solutions
 
-**IDE :** Visual Studio n’a pas été conservé à cause de la diversité des systèmes d’exploitation utilisé par les membres du groupe de travail. Pour développer le projet avec le langage C# tout en gardant nos environnement initiaux (MAC OS X, Ubuntu et Windows) nous avons utilisé MonoDevelop (Xamarin) étant cross-platform et open-source. 
+**IDE :** Visual Studio n’a pas été conservé à cause de la diversité des systèmes d’exploitation utilisés par les membres du groupe de travail. Pour développer le projet avec le langage C# tout en gardant nos environnements initiaux (MAC OS X, Ubuntu et Windows), nous avons utilisé MonoDevelop (Xamarin) qui est cross-platform et open-source. 
 
 ##Améliorations possibles
 
@@ -149,7 +149,7 @@ La partie est sauvegardé lorsque l’on quitte le programme, que ce soit en uti
 
 ##Éléments ratés / non effectués
 
-- Certaines classes (TicTacToeRunner, TicTacToeGame et TicTacToeRound) ne sont pas assez découpées (SRP). Et ceci implique qu’il n’a pas été possible de créer les tests unitaires pour ces trois classes.
+- Certaines classes (TicTacToeRunner, TicTacToeGame et TicTacToeRound) ne sont pas assez découpées (SRP). Ceci implique qu’il n’a pas été possible de créer les tests unitaires pour ces trois classes.
 - Non utilisation d’un framework MOCK
 
 #5 - Conclusion
