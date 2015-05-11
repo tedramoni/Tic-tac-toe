@@ -63,7 +63,7 @@ Cette méthode est utilisée sur l’ensemble du projet.
 
 ###La Dependency Injection
 
-Nous utilisons également la Depency Injection permettant d'implémenter le principe de l'inversion de contrôle (IOC). Il consiste à créer dynamiquement (injecter) les dépendances entre les différentes classes. Ainsi les dépendances entre composants logiciels ne sont plus exprimées dans le code de manière statique mais déterminées dynamiquement à l'exécution. Le code des classes est dépourvu d'instanciation d’objets reconnaissables a l’utilisation de “new” en dehors des classes suffixés par “factory” qui ont pour but de réaliser cette instanciation.
+Nous utilisons également la Depency Injection permettant d'implémenter le principe de l'inversion de contrôle (IOC). Il consiste à créer dynamiquement (injecter) les dépendances entre les différentes classes. Ainsi les dépendances entre composants logiciels ne sont plus exprimées dans le code de manière statique mais déterminées dynamiquement à l'exécution. Le code des classes est dépourvu d'instanciation d’objets reconnaissables à l’utilisation de “new” en dehors des classes suffixées par “factory” qui ont pour but de réaliser cette instanciation.
 
 Ceci nous permet par exemple de changer d’implémentation rapidement et simplement.
 
@@ -71,9 +71,9 @@ Ceci nous permet par exemple de changer d’implémentation rapidement et simple
 
 ![SRP](http://i.imgur.com/yEAgSuk.png)
 
-Nous avons utilisé le design pattern **Single Responsibility Principle** qui consiste à découper les fonctionnalités au maximum et ainsi concevoir et réaliser chaque classe pour qu’elle n’ai une seule tâche à accomplir. Puisqu’une une classe a une simple tache a accomplir, il doit y avoir une seule raison pour qu’elle change. Cela permet de réduire la complexité du programme car chaque fonctionnalité peut être traité et modifié séparément.
+Nous avons utilisé le design pattern **Single Responsibility Principle** qui consiste à découper les fonctionnalités au maximum et ainsi concevoir et réaliser chaque classe pour qu’elle n’ai une seule tâche à accomplir. Puisqu’une classe a une simple tâche a accomplir, il doit y avoir une seule raison pour qu’elle change. Cela permet de réduire la complexité du programme car chaque fonctionnalité peut être traité et modifié séparément.
 
-Le code est alors plus robuste, plus facile à lire et a comprendre avec un nommage des classes adapté. Le découpage permet également de faciliter les tests unitaires.
+Le code est alors plus robuste, plus facile à lire et à comprendre avec un nommage des classes adapté. Le découpage permet également de faciliter les tests unitaires.
 
 ###Test unitaires
 
